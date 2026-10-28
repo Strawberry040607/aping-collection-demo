@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0b">
+<title>阿平文玩</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800;1,900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" media="print" onload="this.media='all'">
+<style>
+/* Layout: one phone-width app shell (max 430px), scrolling pages above a fixed tab bar; upload and points mall are pushed sub-pages */
+:root{
+  color-scheme:dark;
+  --void:#050505; --bg:#0b0b0b; --surface:#121212; --card:#141414; --well:#0d0d0d; --raise:#1d1d1d;
+  --gold:#c9a165; --gold-hi:#dcb97e; --gold-ink:#1a1408; --gold-wash:rgba(201,161,101,.05);
+  --ink:#f2efe9; --ink-2:#9b958b; --ink-3:#5d5952; --warn:#e58a6a;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.22);
+  --ff-d:'Montserrat','Helvetica Neue',Arial,sans-serif;
+  --ff:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  --gl:max(16px, env(safe-area-inset-left, 0px));
+  --gr:max(16px, env(safe-area-inset-right, 0px));
+}
+*,*::before,*::after{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--ff);font-size:14px;line-height:1.5;overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;color:inherit}
+button:focus-visible,.field:focus-visible,.search input:focus-visible,.cmt-form input:focus-visible,.sync input:focus-visible+.check{outline:2px solid var(--gold-hi);outline-offset:2px}
+
+.app{position:relative;height:100%;max-width:430px;margin:0 auto;overflow:hidden;background-color:var(--bg);
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:5px 5px}
+@media (min-width:500px){body{background:var(--void)}.app{border-inline:1px solid var(--line)}}
+
+.page{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;
+  padding-top:14px;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px));padding-left:var(--gl);padding-right:var(--gr)}
+.page::-webkit-scrollbar{display:none}
+
+/* shared */
+.en{font-family:var(--ff-d);font-style:italic;font-weight:900}
+.capsule{display:flex;align-items:center;gap:5px;height:30px;padding:0 9px 0 12px;border:1px solid var(--line-2);border-radius:16px;background:rgba(0,0,0,.6);flex-shrink:0}
+.capsule i{width:4px;height:4px;border-radius:50%;background:var(--ink)}
+.capsule b{width:1px;height:16px;background:var(--line-2);margin:0 6px 0 7px}
+.capsule span{width:15px;height:15px;border-radius:50%;border:2px solid var(--ink)}
+.bar-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
+.ptitle{display:flex;align-items:baseline;gap:8px;font:900 24px/1 var(--ff);letter-spacing:.18em;white-space:nowrap}
+.ptitle .en{font-size:17px;letter-spacing:.01em;color:var(--gold)}
+.mark{position:relative;display:inline-block;z-index:0;font:900 24px/1 var(--ff);letter-spacing:.5em;margin-right:-.5em}
+.mark::after{content:'';position:absolute;z-index:-1;left:.55em;right:-.6em;bottom:-.08em;height:.38em;background:var(--gold)}
+.tag-slant{display:inline-block;background:var(--gold);color:var(--gold-ink);font:italic 900 11px/1 var(--ff);letter-spacing:.15em;padding:5px 12px 5px 11px;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%);white-space:nowrap}
+.side-label{display:flex;align-items:center;gap:8px;font:700 12px/1 var(--ff);letter-spacing:.04em;white-space:nowrap}
+.side-label::before{content:'';width:3px;height:14px;background:var(--gold);flex-shrink:0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.btn-gold{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:50px;background:var(--gold);color:var(--gold-ink);border:none;font:900 15px/1 var(--ff);letter-spacing:.2em;cursor:pointer}
+.btn-gold:disabled{opacity:.6;cursor:default}
+.btn-ghost{border:1.5px solid var(--ink);background:none;font:700 13px/1 var(--ff);padding:9px 14px;letter-spacing:.15em;cursor:pointer;white-space:nowrap}
+.search{display:flex;align-items:center;gap:10px;width:100%;height:44px;padding:0 14px;border:1.5px solid var(--line-2);background:rgba(0,0,0,.5);color:var(--ink-2);font:400 14px/1 var(--ff);letter-spacing:.08em;margin-bottom:16px;cursor:text;text-align:left}
+.search svg{width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2}
+.search input{flex:1;min-width:0;background:none;border:none;color:var(--ink);font:inherit;letter-spacing:inherit;outline:none}
+.search input::placeholder{color:var(--ink-2)}
+.badge{display:inline-block;font:italic 900 10px/1 var(--ff);padding:3px 8px;clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);background:var(--ink-3);color:var(--ink);white-space:nowrap}
+.badge.official{background:var(--ink);color:var(--bg)}
+.badge.vip{background:var(--gold);color:var(--gold-ink)}
+.example{font-size:11px;color:var(--ink-3);letter-spacing:.04em}
+
+/* home */
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.logo{width:40px;height:40px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font:900 17px/1 var(--ff);flex-shrink:0}
+.brand-txt{min-width:0}
+.brand-en{font:italic 900 15px/1 var(--ff-d);white-space:nowrap}
+.brand-cn{font:700 10px/1 var(--ff);color:var(--ink-2);letter-spacing:.3em;margin-top:6px;white-space:nowrap}
+.brand .capsule{margin-left:auto}
+.pick-wrap{transition:opacity .3s}
+.pick-wrap.fade{opacity:0}
+.pick-title{font:italic 900 clamp(30px,10vw,42px)/1 var(--ff-d);color:var(--gold);margin:12px 0 8px;white-space:nowrap}
+.pick-rule{height:3px;width:62%;background:var(--gold);margin-bottom:16px}
+.pick-slide{display:flex;align-items:center;gap:8px;min-height:150px}
+.pick-info{flex:1;min-width:0}
+.pick-name{font:900 18px/1.35 var(--ff);margin-bottom:8px}
+.pick-meta{font-size:12px;color:var(--ink-2);margin-bottom:16px;letter-spacing:.05em}
+.pick-img{position:relative;width:44%;max-width:170px;flex-shrink:0}
+.pick-img svg{display:block;width:100%;height:auto}
+.event-x{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font:italic 900 36px/1 var(--ff-d);color:var(--gold)}
+.event-x small{display:block;font:900 11px/1 var(--ff);letter-spacing:.3em;color:var(--ink);margin:0 0 6px .3em}
+.dots{display:flex;gap:6px;margin-top:14px}
+.dots button{width:24px;height:16px;border:none;padding:0;cursor:pointer;background:linear-gradient(var(--ink-3),var(--ink-3)) center/100% 3px no-repeat}
+.dots button[aria-current="true"]{background-image:linear-gradient(var(--gold),var(--gold))}
+.ck{margin-top:26px}
+.ck-stat{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:14px}
+.ck-num{font:italic 900 62px/.85 var(--ff-d);color:var(--gold);font-variant-numeric:tabular-nums}
+.ck-of{font:italic 900 17px/1 var(--ff-d);margin-left:6px;white-space:nowrap}
+.ck-period{font-size:12px;color:var(--ink-2);text-align:right;line-height:1.75;white-space:nowrap}
+.ck-period b{color:var(--ink);font:italic 900 14px/1 var(--ff-d)}
+.ck-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-bottom:16px}
+.ck-day{height:28px;display:grid;place-items:center;font:italic 800 11px/1 var(--ff-d);border:1px solid var(--line-2);color:var(--ink-2);background:rgba(0,0,0,.45);transition:background .3s,color .3s}
+.ck-day.done{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.ck-day.today{border:1.5px solid var(--gold);color:var(--gold)}
+.ck-tip{font-size:12px;color:var(--ink-2);text-align:center;margin-top:8px}
+.ck-tip b{color:var(--gold);font:italic 900 13px/1 var(--ff-d)}
+.shop-bar{display:flex;align-items:center;gap:10px;width:100%;height:50px;margin-top:14px;padding:0 16px;border:1.5px solid var(--line-2);background:rgba(0,0,0,.4);font:900 14px/1 var(--ff);letter-spacing:.15em;cursor:pointer}
+.shop-bar svg{width:20px;height:20px;fill:none;stroke:var(--gold);stroke-width:1.8;flex-shrink:0}
+.shop-bar .go{margin-left:auto;font:italic 900 13px/1 var(--ff-d);color:var(--gold);letter-spacing:0}
+
+/* community */
+.ctabs{display:flex;gap:28px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.ctab{background:none;border:none;color:var(--ink-2);font:500 15px/1 var(--ff);letter-spacing:.15em;padding:4px 0 12px;position:relative;cursor:pointer}
+.ctab[aria-selected="true"]{color:var(--ink);font-weight:900}
+.ctab[aria-selected="true"]::after{content:'';position:absolute;left:0;right:.15em;bottom:-1px;height:3px;background:var(--gold)}
+.post{border:1px solid var(--line);background:rgba(18,18,18,.75);padding:16px;margin-bottom:14px}
+.post.pending{border:1.5px dashed var(--gold)}
+.mod-bar{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gold);margin-bottom:12px}
+.mod-bar::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse .8s infinite alternate}
+@keyframes pulse{to{opacity:.25}}
+.post-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.avatar{width:42px;height:42px;border-radius:50%;border:2px solid var(--ink-3);display:grid;place-items:center;font:900 16px/1 var(--ff);flex-shrink:0}
+.avatar.gold{border-color:var(--gold)}
+.post-who{flex:1;min-width:0}
+.post-name{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font:900 15px/1.2 var(--ff)}
+.post-time{font-size:12px;color:var(--ink-2);margin-top:4px}
+.btn-follow{border:1.5px solid var(--ink);background:none;font:700 12px/1 var(--ff);padding:8px 12px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.btn-follow[aria-pressed="true"]{border-color:var(--line-2);color:var(--ink-2)}
+.post-text{font-size:15px;line-height:1.65;margin-bottom:12px;overflow-wrap:anywhere}
+.post-img{position:relative;aspect-ratio:3/2;max-width:100%;background:var(--well);overflow:hidden;margin-bottom:12px}
+.post-img .wm{position:absolute;top:7%;left:5%;font:italic 900 clamp(26px,9vw,38px)/1 var(--ff-d);color:rgba(255,255,255,.07);white-space:nowrap}
+.post-img svg{position:absolute;top:6%;left:50%;height:88%;width:auto;aspect-ratio:1;transform:translateX(-50%)}
+.post-img img{width:100%;height:100%;object-fit:cover;display:block}
+.post-img .ptag{position:absolute;left:0;bottom:10%;background:var(--gold);color:var(--gold-ink);font:900 12px/1 var(--ff);padding:6px 10px}
+.likedby{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-bottom:12px}
+.likedby svg{width:14px;height:14px;fill:var(--gold);stroke:none}
+.likedby b{color:var(--ink);font-weight:700}
+.review{border:1.5px solid var(--gold);padding:12px 14px;margin-bottom:12px}
+.review-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;color:var(--ink-2)}
+.review p{font-size:14px;line-height:1.6}
+.post-actions{display:flex;align-items:center;gap:22px}
+.act{display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--ink-2);font:italic 800 14px/1 var(--ff-d);cursor:pointer;padding:6px 0}
+.act svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6}
+.act[aria-pressed="true"]{color:var(--gold)}
+.act[aria-pressed="true"] svg.heart{fill:var(--gold)}
+.act.share{margin-left:auto;font:500 13px/1 var(--ff)}
+.cmts{display:grid;gap:10px;border-top:1px solid var(--line);margin-top:10px;padding-top:12px}
+.cmt{font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.cmt .badge{margin-right:6px;vertical-align:1px}
+.cmt-who{font-weight:900;margin-right:6px}
+.cmt.pending{color:var(--ink-2)}
+.cmt.rejected{color:var(--ink-3)}
+.cmt.rejected .cmt-body{text-decoration:line-through}
+.state{display:inline-block;font-size:11px;line-height:1.4;padding:0 6px;margin-left:6px;border:1px solid currentColor;white-space:nowrap}
+.state.pending{color:var(--gold)}
+.state.rejected{color:var(--warn)}
+.cmt-form{display:flex;gap:8px}
+.cmt-form input{flex:1;min-width:0;height:38px;background:rgba(0,0,0,.5);border:1.5px solid var(--line-2);color:var(--ink);font:400 13px/1 var(--ff);padding:0 12px;outline:none}
+.cmt-form input:focus{border-color:var(--gold)}
+.cmt-form input::placeholder{color:var(--ink-3)}
+.cmt-form button{height:38px;padding:0 14px;background:var(--gold);color:var(--gold-ink);border:none;font:900 13px/1 var(--ff);letter-spacing:.1em;cursor:pointer;white-space:nowrap}
+.cmt-note{font-size:11px;color:var(--ink-3)}
+.empty{padding:44px 16px;text-align:center;color:var(--ink-2);font-size:13px;line-height:1.7;border:1px dashed var(--line-2)}
+.empty b{display:block;color:var(--ink);font-size:15px;margin-bottom:6px}
+
+/* collection */
+.coll{display:flex;margin-left:calc(-1 * var(--gl));min-height:calc(100% - 110px)}
+.side{width:84px;flex-shrink:0;background:var(--surface)}
+.side button{display:block;width:100%;height:54px;background:none;border:none;color:var(--ink-2);font:500 13px/1 var(--ff);letter-spacing:.04em;cursor:pointer;position:relative}
+.side button[aria-selected="true"]{background:var(--raise);color:var(--gold);font-weight:900}
+.side button[aria-selected="true"]::before{content:'';position:absolute;left:0;top:15px;bottom:15px;width:3px;background:var(--gold)}
+.coll-main{flex:1;min-width:0;padding-left:12px}
+.cat-head{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin:10px 0 14px}
+.cat-head .mark{font-size:22px}
+.cat-en{font:italic 900 12px/1 var(--ff-d);color:var(--ink-2);margin-top:9px;letter-spacing:.06em}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.item{background:var(--card);border:1px solid var(--line)}
+.item.mine{border-color:var(--gold)}
+.item-img{position:relative;aspect-ratio:1;max-width:100%;display:grid;place-items:center;background:var(--well);overflow:hidden}
+.item-img svg{width:80%;height:auto}
+.item-img img{width:100%;height:100%;object-fit:cover}
+.item-img .mod{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.62);font:900 12px/1 var(--ff);color:var(--gold);letter-spacing:.2em}
+.item-no{position:absolute;top:6px;right:8px;font:italic 900 12px/1 var(--ff-d);color:var(--ink-3)}
+.item-body{padding:9px 8px 10px}
+.item-title{font:900 12px/1.3 var(--ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px}
+.item-foot{display:flex;justify-content:space-between;align-items:center;gap:4px;font-size:11px;color:var(--ink-2)}
+.item-foot span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item-foot .lk{font:italic 800 11px/1 var(--ff-d);white-space:nowrap}
+.grid2 .empty{grid-column:1/-1}
+
+/* knowledge */
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-right:calc(-1 * var(--gr));padding-right:var(--gr);margin-bottom:24px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;height:38px;padding:0 15px;border:1.5px solid var(--line-2);background:rgba(0,0,0,.4);font:500 14px/1 var(--ff);letter-spacing:.06em;cursor:pointer}
+.chip[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink);font-weight:900}
+.guide-head{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.art{display:flex;align-items:center;gap:14px;width:100%;padding:18px 0;border:none;border-bottom:1px solid var(--line);background:none;font:500 15px/1.35 var(--ff);letter-spacing:.05em;text-align:left;cursor:pointer}
+.art-no{font:italic 900 24px/1 var(--ff-d);color:var(--gold);width:36px;flex-shrink:0}
+.art .chev{margin-left:auto;color:var(--ink-2);font-size:18px}
+.xp{position:relative;overflow:hidden;border:1.5px solid var(--gold);padding:16px 14px;margin:24px 0}
+.xp .wm{position:absolute;right:-4px;top:-8px;font:italic 900 52px/1 var(--ff-d);color:rgba(255,255,255,.05);pointer-events:none}
+.xp-top{position:relative;display:flex;align-items:center;gap:12px}
+.xp-icon{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center;color:var(--gold);flex-shrink:0}
+.xp-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6}
+.xp-info{flex:1;min-width:0}
+.xp-title{font:900 15px/1.2 var(--ff);letter-spacing:.1em}
+.xp-sub{font-size:12px;color:var(--ink-2);margin-top:6px}
+.xp-actions{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.xp-btn{height:40px;background:var(--gold);color:var(--gold-ink);border:1.5px solid var(--gold);font:900 13px/1 var(--ff);letter-spacing:.1em;cursor:pointer;white-space:nowrap}
+.xp-btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.more-h{display:flex;align-items:baseline;gap:8px;font:900 13px/1 var(--ff);color:var(--ink-2);letter-spacing:.3em;margin-bottom:12px}
+.more-h .en{font-size:12px;letter-spacing:.2em}
+.more{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.more button{display:flex;align-items:center;gap:12px;padding:14px 12px;background:rgba(18,18,18,.8);border:1px solid var(--line);cursor:pointer;text-align:left;min-width:0}
+.ball{width:36px;height:36px;border-radius:50%;flex-shrink:0}
+.more b{display:block;font:900 15px/1.2 var(--ff);letter-spacing:.06em}
+.more small{display:block;font:italic 800 9px/1.25 var(--ff-d);color:var(--ink-2);margin-top:3px}
+
+/* profile */
+.me{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.me .avatar{width:64px;height:64px;font-size:26px;border-color:var(--gold)}
+.me-info{flex:1;min-width:0}
+.me-name{display:flex;align-items:center;gap:8px;font:900 20px/1 var(--ff);letter-spacing:.1em}
+.me-name .tag-slant{letter-spacing:.05em}
+.me-bio{font-size:12px;color:var(--ink-2);margin-top:9px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:18px}
+.stats div{text-align:center}
+.stats div+div{border-left:1px solid var(--line)}
+.stats b{display:block;font:italic 900 30px/1 var(--ff-d);font-variant-numeric:tabular-nums}
+.stats span{display:block;font-size:12px;color:var(--ink-2);margin-top:9px;letter-spacing:.2em}
+.pts{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--gold);color:var(--gold-ink);padding:16px;margin-bottom:12px}
+.pts-label{display:block;font:900 12px/1 var(--ff);letter-spacing:.2em}
+.pts-num{display:block;font:italic 900 34px/1 var(--ff-d);margin-top:8px;font-variant-numeric:tabular-nums}
+.pts-go{height:38px;padding:0 14px;background:var(--gold-ink);color:var(--gold);border:none;font:900 13px/1 var(--ff);letter-spacing:.1em;cursor:pointer;white-space:nowrap}
+.goal{border:1.5px solid var(--gold);padding:16px;background:var(--gold-wash);margin-bottom:28px}
+.goal-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.goal-top b{font:900 15px/1 var(--ff);letter-spacing:.15em}
+.goal-top span{font:italic 900 15px/1 var(--ff-d);color:var(--gold);white-space:nowrap}
+.meter{height:5px;background:var(--raise);margin:14px 0 10px}
+.meter i{display:block;height:100%;background:var(--gold);transition:width .4s}
+.goal p{font-size:12px;color:var(--ink-2)}
+.shop3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.prod{background:var(--card);border:1px solid var(--line);cursor:pointer;text-align:left;padding:0;min-width:0}
+.prod .ph{aspect-ratio:1/.85;display:grid;place-items:center;background:var(--well)}
+.prod .ball{width:46%;height:auto;aspect-ratio:1}
+.prod .pb{padding:8px}
+.prod b{display:block;font:900 12px/1.3 var(--ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prod span{display:block;font:italic 900 13px/1 var(--ff-d);color:var(--gold);margin-top:6px}
+.menu button{display:flex;justify-content:space-between;align-items:center;width:100%;padding:18px 0;border:none;border-bottom:1px solid var(--line);background:none;font:500 15px/1 var(--ff);letter-spacing:.08em;cursor:pointer}
+.menu .arr{color:var(--ink-2)}
+
+/* floating buttons */
+.fabs{position:absolute;right:var(--gr);bottom:calc(84px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:12px;z-index:30}
+.fab{width:60px;height:60px;border-radius:50%;background:var(--gold);color:var(--gold-ink);border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:900 10px/1 var(--ff);cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.55)}
+.fab svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2}
+.fab.mini{width:46px;height:46px;background:rgba(230,228,224,.88);color:#4a4740}
+.fab.mini svg{width:20px;height:20px}
+
+/* tab bar */
+.tabbar{position:absolute;left:0;right:0;bottom:0;display:flex;background:var(--well);border-top:1px solid var(--line);z-index:40;
+  padding:8px env(safe-area-inset-right,0px) calc(8px + env(safe-area-inset-bottom,0px)) env(safe-area-inset-left,0px)}
+.tabbar button{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;color:var(--ink-2);font:500 11px/1 var(--ff);padding:4px 0;cursor:pointer}
+.tabbar svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tabbar [aria-selected="true"]{color:var(--gold);font-weight:900}
+
+/* sub-pages */
+.sub{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;background-color:var(--bg);transform:translateX(100%);visibility:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1),visibility 0s .35s}
+.sub.open{transform:none;visibility:visible;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.sub-nav{position:relative;display:flex;align-items:center;height:54px;flex-shrink:0;background:var(--raise);padding-left:calc(var(--gl) - 8px);padding-right:var(--gr)}
+.sub-nav .back{width:40px;height:40px;background:none;border:none;cursor:pointer;display:grid;place-items:center}
+.sub-nav .back svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2}
+.sub-nav h1{position:absolute;left:50%;transform:translateX(-50%);font:900 17px/1 var(--ff);letter-spacing:.15em;white-space:nowrap}
+.sub-nav .capsule{margin-left:auto}
+.sub-body{flex:1;overflow-y:auto;padding-top:20px;padding-bottom:24px;padding-left:var(--gl);padding-right:var(--gr)}
+.sub-body:last-child{padding-bottom:calc(32px + env(safe-area-inset-bottom,0px))}
+.up-title{font:italic 900 42px/1 var(--ff-d);color:var(--gold);white-space:nowrap}
+.up-rule{height:3px;width:46%;background:var(--gold);margin:8px 0 12px}
+.up-sub{font:700 12px/1.4 var(--ff);color:var(--ink-2);letter-spacing:.28em;margin-bottom:26px}
+.step{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.step .n{font:italic 900 22px/1 var(--ff-d);color:var(--gold)}
+.step h2{font:900 16px/1 var(--ff);letter-spacing:.15em}
+.step .count{margin-left:auto;font:italic 900 14px/1 var(--ff-d);color:var(--ink-2)}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px}
+.ph-tile{position:relative;aspect-ratio:1/.88;max-width:100%;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.ph-tile svg{width:76%;height:auto}
+.ph-tile img{width:100%;height:100%;object-fit:cover}
+.ph-tile .bead{width:52%;aspect-ratio:1;border-radius:50%}
+.ph-tile .cover{position:absolute;top:0;left:0;background:var(--gold);color:var(--gold-ink);font:900 10px/1 var(--ff);padding:4px 6px}
+.ph-tile .rm{position:absolute;top:4px;right:4px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.75);border:none;cursor:pointer;font-size:15px;line-height:1}
+.ph-add{border:1.5px dashed var(--ink-3);background:none;color:var(--ink-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font:500 12px/1 var(--ff);letter-spacing:.1em;cursor:pointer}
+.ph-add .plus{font-size:30px;font-weight:300;line-height:1}
+.cats4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.cats4 button{height:42px;border:1.5px solid var(--line-2);background:rgba(0,0,0,.4);font:500 13px/1 var(--ff);cursor:pointer;white-space:nowrap}
+.cats4 button[aria-checked="true"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink);font-weight:900}
+.hint{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:28px}
+.hint::before{content:'';width:3px;height:14px;background:var(--gold);flex-shrink:0}
+.hint b{color:var(--gold)}
+.field{display:block;width:100%;background:rgba(0,0,0,.5);border:1.5px solid var(--line-2);color:var(--ink);font:400 14px/1.5 var(--ff);padding:12px 14px;outline:none;margin-bottom:10px}
+.field:focus{border-color:var(--gold)}
+.field::placeholder{color:var(--ink-3)}
+.field.bad{border-color:var(--warn)}
+textarea.field{height:96px;resize:none}
+.field-err{color:var(--warn);font-size:12px;margin:-4px 0 10px}
+.sync{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;cursor:pointer}
+.sync b{display:block;font:900 15px/1 var(--ff);letter-spacing:.06em}
+.sync small{display:block;font-size:12px;color:var(--ink-2);margin-top:7px}
+.sync input{position:absolute;opacity:0;width:1px;height:1px}
+.check{width:26px;height:26px;flex-shrink:0;background:var(--raise);border:1.5px solid var(--line-2);display:grid;place-items:center;color:var(--gold-ink)}
+.check svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:3;opacity:0}
+.sync input:checked+.check{background:var(--gold);border-color:var(--gold)}
+.sync input:checked+.check svg{opacity:1}
+.up-note{display:flex;gap:8px;margin-top:22px;padding:12px;border:1px solid var(--line);font-size:12px;line-height:1.6;color:var(--ink-2)}
+.up-note svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;fill:none;stroke:var(--gold);stroke-width:1.8}
+.sub-foot{flex-shrink:0;padding-top:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));padding-left:var(--gl);padding-right:var(--gr);border-top:1px solid var(--line);background:var(--bg)}
+
+/* points mall */
+.mall-bal{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border:1.5px solid var(--gold);background:var(--gold-wash);padding:14px 16px;margin-bottom:26px}
+.mall-bal span{font:900 13px/1 var(--ff);letter-spacing:.2em}
+.mall-bal b{font:italic 900 30px/1 var(--ff-d);color:var(--gold);font-variant-numeric:tabular-nums}
+.mall-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:28px}
+.gift{background:var(--card);border:1px solid var(--line);min-width:0}
+.gift .ph{aspect-ratio:1/.8;display:grid;place-items:center;background:var(--well)}
+.gift .ph svg{width:68%;height:auto}
+.gift-body{padding:10px}
+.gift-name{font:900 13px/1.3 var(--ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gift-row{display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin:8px 0 10px}
+.gift-cost{font:italic 900 16px/1 var(--ff-d);color:var(--gold);font-variant-numeric:tabular-nums}
+.gift-cost small{font:500 11px/1 var(--ff);font-style:normal;color:var(--ink-2);margin-left:3px}
+.gift-stock{font-size:11px;color:var(--ink-2);white-space:nowrap}
+.gift-btn{width:100%;height:36px;background:var(--gold);color:var(--gold-ink);border:none;font:900 12px/1 var(--ff);letter-spacing:.12em;cursor:pointer}
+.gift-btn.confirm{background:var(--ink);color:var(--bg)}
+.gift-btn:disabled{background:var(--raise);color:var(--ink-3);cursor:default}
+.rules{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:28px}
+.rules td{padding:12px 0;border-bottom:1px solid var(--line)}
+.rules td:nth-child(2){font:italic 900 14px/1 var(--ff-d);color:var(--gold);text-align:right;white-space:nowrap;padding-right:12px}
+.rules td:nth-child(3){text-align:right;color:var(--ink-2);font-size:12px;white-space:nowrap;width:1%}
+.log{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.log small{display:block;color:var(--ink-2);font-size:11px;margin-top:3px}
+.log b{font:italic 900 15px/1 var(--ff-d);color:var(--gold);white-space:nowrap}
+.log b.neg{color:var(--ink-2)}
+
+.toast{position:absolute;left:50%;bottom:calc(112px + env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);width:max-content;max-width:calc(100% - 32px);background:rgba(28,26,22,.96);border:1px solid var(--gold);padding:10px 16px;font-size:13px;opacity:0;transition:opacity .25s,transform .25s;z-index:100;pointer-events:none;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="app" id="app">
+
+  <!-- 01 首页 -->
+  <main class="page" id="page-home">
+    <header class="brand">
+      <div class="logo">平</div>
+      <div class="brand-txt"><div class="brand-en">APING COLLECTION</div><div class="brand-cn">阿平文玩 · 观藏垣</div></div>
+      <div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div>
+    </header>
+
+    <section aria-label="今日最佳与活动">
+      <div class="pick-wrap" id="pick-wrap"></div>
+      <div class="dots" id="pick-dots"></div>
+    </section>
+
+    <section class="ck" aria-label="打卡">
+      <div class="sec-head"><h2 class="mark">打卡</h2><span class="side-label">连续 30 天 · 免费领手串</span></div>
+      <div class="ck-stat">
+        <div><span class="ck-num" id="ck-num">12</span><span class="ck-of">/ 30 DAYS</span></div>
+        <div class="ck-period">本期 10.15 – 11.13<br>还差 <b id="ck-left">18</b> 天领取</div>
+      </div>
+      <div class="ck-grid" id="ck-grid"></div>
+      <button class="btn-gold" id="ck-btn"></button>
+      <p class="ck-tip">每次打卡 <b>+10</b> 积分，可在积分商城兑换手串</p>
+      <button class="shop-bar" data-todo="将跳转至抖音小黄车 · 阿平严选">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 001.5 1.1h8.6a1.5 1.5 0 001.5-1.1L21 7H6"/></svg>
+        阿平严选 · 小黄车<span class="go">SHOP →</span>
+      </button>
+    </section>
+  </main>
+
+  <!-- 02 盘友圈 -->
+  <main class="page" id="page-community" hidden>
+    <header class="bar-top"><h1 class="ptitle">盘友圈<span class="en">COMMUNITY</span></h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <div class="ctabs" role="tablist">
+      <button class="ctab" role="tab" data-ctab="rec" aria-selected="true">推荐</button>
+      <button class="ctab" role="tab" data-ctab="follow" aria-selected="false">关注</button>
+      <button class="ctab" role="tab" data-ctab="review" aria-selected="false">大佬点评</button>
+    </div>
+    <div id="feed"></div>
+  </main>
+
+  <!-- 03 文玩 -->
+  <main class="page" id="page-collection" hidden>
+    <header class="bar-top"><h1 class="ptitle">文玩<span class="en">COLLECTION</span></h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <label class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="coll-q" type="search" placeholder="搜索品类、手串、盘友" autocomplete="off">
+    </label>
+    <div class="coll">
+      <nav class="side" id="coll-side" role="tablist" aria-label="品类"></nav>
+      <div class="coll-main">
+        <div class="cat-head">
+          <div><h2 class="mark" id="coll-name"></h2><div class="cat-en" id="coll-en"></div></div>
+          <span class="side-label">玩家作品 · 最新</span>
+        </div>
+        <div class="grid2" id="coll-grid"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 05 知识库 -->
+  <main class="page" id="page-knowledge" hidden>
+    <header class="bar-top"><h1 class="ptitle">知识库<span class="en">KNOWLEDGE</span></h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <button class="search" data-todo="知识库搜索 · 开发阶段接入">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span id="know-ph"></span>
+    </button>
+    <div class="chips" id="know-chips" role="tablist" aria-label="品类"></div>
+    <div class="guide-head">
+      <div><h2 class="mark" id="know-name"></h2><div class="cat-en" id="know-en"></div></div>
+      <span class="side-label">真假辨别 · 盘玩常识</span>
+    </div>
+    <div id="know-arts"></div>
+    <div class="xp">
+      <span class="wm">EXPERT</span>
+      <div class="xp-top">
+        <div class="xp-icon"><svg viewBox="0 0 24 24"><path d="M12 21.5s7.5-3.6 7.5-9.5V5.3L12 2.5 4.5 5.3V12c0 5.9 7.5 9.5 7.5 9.5z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></svg></div>
+        <div class="xp-info"><div class="xp-title">专家讲解 · <span id="xp-cat"></span></div><div class="xp-sub">[专家姓名] · [资质 / 从业年限]</div></div>
+      </div>
+      <div class="xp-actions">
+        <button class="xp-btn" data-todo="将跳转专家的抖音讲解作品">▶ 看讲解视频</button>
+        <button class="xp-btn ghost" data-todo="将打开抖音私信 · 向专家咨询">私信咨询</button>
+      </div>
+    </div>
+    <div class="more-h">其他品类 <span class="en">/ MORE</span></div>
+    <div class="more" id="know-more"></div>
+  </main>
+
+  <!-- 06 我的 -->
+  <main class="page" id="page-profile" hidden>
+    <header class="bar-top"><h1 class="en" style="font-size:22px;color:var(--gold)">MY PROFILE</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <div class="me">
+      <div class="avatar">木</div>
+      <div class="me-info">
+        <div class="me-name">木木 <span class="tag-slant">盘龄 3 年</span></div>
+        <div class="me-bio">抖音授权登录 · 沉香 / 蜜蜡爱好者</div>
+      </div>
+      <button class="btn-ghost" data-todo="编辑资料 · 开发阶段接入">编辑</button>
+    </div>
+    <div class="stats">
+      <div><b id="st-ck">12</b><span>连续打卡</span></div>
+      <div><b id="st-items">06</b><span>我的文玩</span></div>
+      <div><b>328</b><span>获赞</span></div>
+    </div>
+    <div class="pts">
+      <div><span class="pts-label">我的积分</span><b class="pts-num" id="pts">1,280</b></div>
+      <button class="pts-go" data-open-mall>积分商城 →</button>
+    </div>
+    <div class="goal">
+      <div class="goal-top"><b>打卡领手串</b><span id="goal-days">12 / 30 DAYS</span></div>
+      <div class="meter"><i id="goal-bar" style="width:40%"></i></div>
+      <p id="goal-hint">再坚持 18 天即可免费领取，记得填写收货地址</p>
+    </div>
+    <div class="sec-head"><h2 class="mark">在售</h2><button class="side-label" style="background:none;border:none;cursor:pointer" data-todo="将跳转至抖音小黄车 · 阿平严选">阿平严选 · 小黄车 →</button></div>
+    <div class="shop3" id="shop3"></div>
+    <nav class="menu">
+      <button data-open-mall><span>积分明细</span><span class="arr">→</span></button>
+      <button data-todo="打卡记录 · 开发阶段接入"><span>打卡记录</span><span class="arr">→</span></button>
+      <button data-todo="我的文玩 · 开发阶段接入"><span>我的文玩</span><span class="arr">→</span></button>
+      <button data-todo="专家咨询记录 · 开发阶段接入"><span>专家咨询记录</span><span class="arr">→</span></button>
+    </nav>
+  </main>
+
+  <div class="fabs" data-for="community" hidden>
+    <button class="fab" data-open-upload><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>发文玩</button>
+  </div>
+  <div class="fabs" data-for="collection" hidden>
+    <button class="fab mini" aria-label="分享" data-todo="将调起抖音分享"><svg viewBox="0 0 24 24"><path d="M4 13v6a2 2 0 002 2h12a2 2 0 002-2v-6M16 7l-4-4-4 4M12 3v13"/></svg></button>
+    <button class="fab mini" aria-label="联系客服" data-todo="将打开抖音客服会话"><svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg></button>
+    <button class="fab" data-open-upload><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 012-2h2.5l1.5-2h6l1.5 2H19a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg>上传</button>
+  </div>
+
+  <nav class="tabbar" role="tablist" aria-label="主导航">
+    <button role="tab" data-tab="home" aria-selected="true"><svg viewBox="0 0 24 24"><path d="M3.5 10.5L12 3.5l8.5 7V20a1 1 0 01-1 1h-5v-6h-5v6h-5a1 1 0 01-1-1z"/></svg>首页</button>
+    <button role="tab" data-tab="community" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 3.5c4.7 0 8.5 3.4 8.5 7.6S16.7 18.7 12 18.7c-1 0-2-.2-2.9-.5L4 20.5l1.4-4.1A7.3 7.3 0 013.5 11.1C3.5 6.9 7.3 3.5 12 3.5z"/></svg>盘友圈</button>
+    <button role="tab" data-tab="collection" aria-selected="false"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>文玩</button>
+    <button role="tab" data-tab="knowledge" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M5 4.5A1.5 1.5 0 016.5 3H19v15H6.5A1.5 1.5 0 005 19.5z"/><path d="M5 19.5A1.5 1.5 0 006.5 21H19v-3"/></svg>知识库</button>
+    <button role="tab" data-tab="profile" aria-selected="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>我的</button>
+  </nav>
+
+  <!-- 04 上传文玩 -->
+  <section class="sub" id="upload" aria-label="上传文玩" aria-hidden="true">
+    <div class="sub-nav">
+      <button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <h1>上传文玩</h1>
+      <div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div>
+    </div>
+    <div class="sub-body">
+      <div class="up-title">UPLOAD</div>
+      <div class="up-rule"></div>
+      <div class="up-sub">上传你的文玩 · 自动归入对应专区</div>
+
+      <div class="step"><span class="n">01</span><h2>手串照片</h2><span class="count" id="ph-count">2 / 9</span></div>
+      <div class="photos" id="photos"></div>
+      <input type="file" id="ph-file" accept="image/*" multiple hidden>
+
+      <div class="step"><span class="n">02</span><h2>选择品类</h2></div>
+      <div class="cats4" id="up-cats" role="radiogroup" aria-label="品类"></div>
+      <div class="hint" id="up-hint"></div>
+
+      <div class="step"><span class="n">03</span><h2>作品信息</h2></div>
+      <input class="field" id="up-name" maxlength="30" placeholder="名称，例如：老蜜蜡圆珠 · 盘玩半年" aria-label="作品名称">
+      <div class="field-err" id="up-err" role="alert" hidden></div>
+      <textarea class="field" id="up-desc" maxlength="200" placeholder="来源、盘玩时长、想请教的问题……" aria-label="作品描述"></textarea>
+
+      <label class="sync">
+        <span><b>同步到盘友圈</b><small>可获得点赞与大佬点评</small></span>
+        <input type="checkbox" id="up-sync" checked>
+        <span class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+      </label>
+
+      <p class="up-note"><svg viewBox="0 0 24 24"><path d="M12 21.5s7.5-3.6 7.5-9.5V5.3L12 2.5 4.5 5.3V12c0 5.9 7.5 9.5 7.5 9.5z"/></svg>图片和文字会先经过内容安全审核，涉及国家政治、负面情绪、诈骗、色情等违规内容将不予发布。审核通过后可获得积分。</p>
+    </div>
+    <div class="sub-foot"><button class="btn-gold" id="up-go"></button></div>
+  </section>
+
+  <!-- 积分商城 -->
+  <section class="sub" id="mall" aria-label="积分商城" aria-hidden="true">
+    <div class="sub-nav">
+      <button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <h1>积分商城</h1>
+      <div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div>
+    </div>
+    <div class="sub-body">
+      <div class="up-title" style="font-size:clamp(30px,9.5vw,38px)">POINTS MALL</div>
+      <div class="up-rule"></div>
+      <div class="up-sub">打卡互动攒积分 · 兑换手串</div>
+      <div class="mall-bal"><span>可用积分</span><b id="mall-pts">1,280</b></div>
+
+      <div class="sec-head"><h2 class="mark">兑换</h2><span class="example">商品与所需积分为示例</span></div>
+      <div class="mall-grid" id="mall-grid"></div>
+
+      <div class="sec-head"><h2 class="mark">规则</h2><span class="example">数值为示例 · 待客户确认</span></div>
+      <table class="rules" id="rules"></table>
+
+      <div class="sec-head"><h2 class="mark">明细</h2></div>
+      <div id="mall-log"></div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" role="status"></div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad2 = n => String(n).padStart(2, '0');
+const fmt = n => n.toLocaleString('en-US');
+
+const CATS = [
+  { name:'沉香',   en:'AGARWOOD',       wm:'AGARWOOD',  c:['#a3835c','#5e4128','#2a1b0f'], n:14 },
+  { name:'星月菩提', en:'STAR MOON BODHI', wm:'STAR MOON', c:['#fffaf0','#e6dcc4','#a99a78'], n:16 },
+  { name:'橄榄核', en:'OLIVE PIT',      wm:'OLIVE PIT', c:['#e6ae7e','#a8693c','#5a3216'], n:12 },
+  { name:'蜜蜡',   en:'AMBER',          wm:'AMBER',     c:['#ffdc85','#e8a52a','#a0640a'], n:14 },
+  { name:'小叶紫檀', en:'RED SANDALWOOD', wm:'SANDALWOOD',c:['#b04c4c','#6e1e1e','#360b0b'], n:15 },
+  { name:'金刚菩提', en:'VAJRA BODHI',   wm:'VAJRA',     c:['#cfa070','#8c5e34','#45290f'], n:12 },
+  { name:'南红',   en:'NANHONG AGATE',  wm:'NANHONG',   c:['#f2866a','#c43a2a','#701509'], n:16 },
+  { name:'绿松石', en:'TURQUOISE',      wm:'TURQUOISE', c:['#9bdccb','#3f9e8a','#1b5446'], n:14 },
+];
+
+let gid = 0;
+function bracelet(ci, n, rot = 0) {
+  const c = CATS[ci]; n = Math.max(8, n || c.n);
+  const S = 200, cx = S / 2, R = S * 0.35, r = R * Math.sin(Math.PI / n) * 0.97, id = 'bg' + (gid++);
+  let s = `<svg viewBox="0 0 ${S} ${S}" aria-hidden="true"><defs><radialGradient id="${id}" cx="34%" cy="30%" r="75%"><stop offset="0" stop-color="${c.c[0]}"/><stop offset=".5" stop-color="${c.c[1]}"/><stop offset="1" stop-color="${c.c[2]}"/></radialGradient></defs>`;
+  for (let i = 0; i < n; i++) {
+    const a = 2 * Math.PI * i / n + rot - Math.PI / 2;
+    s += `<circle cx="${(cx + R * Math.cos(a)).toFixed(1)}" cy="${(cx + R * Math.sin(a)).toFixed(1)}" r="${r.toFixed(1)}" fill="url(#${id})"/>`;
+  }
+  return s + '</svg>';
+}
+const ball = ci => { const c = CATS[ci].c; return `radial-gradient(circle at 34% 30%, ${c[0]}, ${c[1]} 50%, ${c[2]})`; };
+
+/* demo content check; the real check runs server-side via Douyin content security */
+const BLOCK = ['加微信', '加v', '微信号', '私下交易', '转账', '刷单', '返现'];
+const blocked = t => BLOCK.find(w => t.toLowerCase().includes(w));
+
+const S = {
+  tab: 'home', checked: 12, checkedToday: false, adTimer: null,
+  pick: 0, ctab: 'rec', following: new Set(), liked: new Set(), likeAwarded: new Set(), openCmt: null,
+  coll: 3, q: '', know: 3, up: 3, photos: null, published: 0,
+  userItems: CATS.map(() => []),
+  points: 1280, earned: {}, confirmGift: null,
+  log: [
+    { t:'看广告打卡', p:10, when:'昨天' }, { t:'发表评论', p:2, when:'昨天' },
+    { t:'转发分享', p:3, when:'10.26' }, { t:'发布文玩', p:5, when:'10.25' },
+  ],
+};
+
+/* toast + placeholders for screens not built yet */
+let toastT;
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2200);
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-todo]'); if (t) toast(t.dataset.todo);
+  const c = e.target.closest('[data-close-sub]'); if (c) closeSub(c.closest('.sub'));
+  const m = e.target.closest('[data-open-mall]'); if (m) { renderMall(); openSub('mall'); }
+  const u = e.target.closest('[data-open-upload]'); if (u) openUpload();
+});
+
+/* points */
+const RULES = {
+  checkin: { t:'看广告打卡', p:10, cap:1 },
+  post:    { t:'发布文玩（审核通过）', p:5, cap:3 },
+  comment: { t:'发表评论', p:2, cap:10 },
+  like:    { t:'点赞', p:1, cap:20 },
+  share:   { t:'转发分享', p:3, cap:5 },
+};
+function earn(k) {
+  const r = RULES[k], n = S.earned[k] || 0;
+  if (n >= r.cap) return 0;
+  S.earned[k] = n + 1; S.points += r.p;
+  S.log.unshift({ t: r.t.replace(/（.*）/, ''), p: r.p, when: '刚刚' });
+  renderPoints();
+  return r.p;
+}
+const plus = p => p ? ` · +${p} 积分` : '';
+function renderPoints() {
+  $('#pts').textContent = fmt(S.points);
+  $('#mall-pts').textContent = fmt(S.points);
+  if ($('#mall').classList.contains('open')) renderMall();
+}
+
+/* sub-pages */
+function openSub(id) { const u = $('#' + id); u.classList.add('open'); u.setAttribute('aria-hidden', 'false'); u.querySelector('.sub-body').scrollTop = 0; }
+function closeSub(el) { el.classList.remove('open'); el.setAttribute('aria-hidden', 'true'); }
+
+/* tabs */
+function go(tab) {
+  S.tab = tab;
+  document.querySelectorAll('.page').forEach(p => p.hidden = p.id !== 'page-' + tab);
+  document.querySelectorAll('.tabbar button').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === tab));
+  document.querySelectorAll('.fabs').forEach(f => f.hidden = f.dataset.for !== tab);
+}
+document.querySelectorAll('.tabbar button').forEach(b => b.onclick = () => go(b.dataset.tab));
+
+/* 01 home: carousel of picks and events */
+const PICKS = [
+  { cat:0, name:'海南沉香 · 108 子', meta:'盘友 @木木 · 盘玩三年', n:16 },
+  { event:true, cat:3, name:'盘友节 · 打卡积分翻倍', meta:'活动时间 [待定] · 以活动页规则为准', n:14 },
+  { cat:4, name:'小叶紫檀 · 满金星', meta:'盘友 @阿凯 · 盘玩八个月', n:15 },
+];
+function renderPick() {
+  const p = PICKS[S.pick];
+  $('#pick-wrap').innerHTML = `
+    <span class="tag-slant">${p.event ? '限时活动' : '今日最佳'}</span>
+    <h1 class="pick-title">${p.event ? 'EVENT' : "TODAY'S PICK"}</h1>
+    <div class="pick-rule"></div>
+    <div class="pick-slide">
+      <div class="pick-info"><div class="pick-name">【${p.name}】</div><div class="pick-meta">${p.meta}</div>
+        <button class="btn-ghost" data-todo="${p.event ? '活动详情页' : '作品详情页'} · 开发阶段接入">${p.event ? '查看活动' : '查看详情'} →</button></div>
+      <div class="pick-img">${bracelet(p.cat, p.n)}${p.event ? '<div class="event-x"><div><small>积分</small>×2</div></div>' : ''}</div>
+    </div>`;
+  $('#pick-dots').innerHTML = PICKS.map((_, i) => `<button aria-label="第 ${i + 1} 张" aria-current="${i === S.pick}" data-pick="${i}"></button>`).join('');
+}
+function setPick(i) {
+  const el = $('#pick-wrap'); el.classList.add('fade');
+  setTimeout(() => { S.pick = i; renderPick(); el.classList.remove('fade'); }, 250);
+}
+$('#pick-dots').addEventListener('click', e => { const b = e.target.closest('[data-pick]'); if (b) { setPick(+b.dataset.pick); restartAuto(); } });
+let autoT;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function restartAuto() { clearInterval(autoT); if (!reduce) autoT = setInterval(() => S.tab === 'home' && setPick((S.pick + 1) % PICKS.length), 5000); }
+
+/* 01 home: check-in */
+function renderCheckin() {
+  const today = S.checkedToday ? 0 : S.checked + 1;
+  $('#ck-grid').innerHTML = Array.from({ length: 30 }, (_, i) => {
+    const d = i + 1, cls = d <= S.checked ? ' done' : d === today ? ' today' : '';
+    return `<div class="ck-day${cls}">${d}</div>`;
+  }).join('');
+  const left = 30 - S.checked;
+  $('#ck-num').textContent = S.checked;
+  $('#ck-left').textContent = left;
+  const btn = $('#ck-btn');
+  if (!S.adTimer) {
+    btn.disabled = S.checkedToday;
+    btn.textContent = S.checkedToday ? '✓ 今日已打卡 · 明天再来' : `▶ 看广告打卡 · 第 ${S.checked + 1} 天`;
+  }
+  $('#st-ck').textContent = pad2(S.checked);
+  $('#goal-days').textContent = `${S.checked} / 30 DAYS`;
+  $('#goal-bar').style.width = (S.checked / 30 * 100).toFixed(1) + '%';
+  $('#goal-hint').textContent = `再坚持 ${left} 天即可免费领取，记得填写收货地址`;
+}
+$('#ck-btn').onclick = () => {
+  if (S.checkedToday || S.adTimer) return;
+  const btn = $('#ck-btn'); let t = 3;
+  btn.disabled = true; btn.textContent = `广告播放中 · ${t}s`;
+  S.adTimer = setInterval(() => {
+    t--;
+    if (t > 0) { btn.textContent = `广告播放中 · ${t}s`; return; }
+    clearInterval(S.adTimer); S.adTimer = null;
+    S.checkedToday = true; S.checked++;
+    const got = earn('checkin');
+    renderCheckin();
+    toast(`打卡成功 · 已连续 ${S.checked} 天${plus(got)}`);
+  }, 1000);
+};
+
+/* 02 community */
+const POSTS = [
+  { id:'p1', user:'观藏垣 · 阿平', av:'平', badge:'官方', bcls:'official', time:'2 小时前', cat:0, n:16,
+    text:'给大家看看这串老料沉香，盘了两年，油线已经慢慢出来了。', likes:328, comments:46,
+    likedBy:{ who:'@老周', badge:'大佬', bcls:'vip' },
+    review:{ who:'@老周 · 认证藏家', text:'颜色走得很匀，再盘半年包浆会更漂亮。' },
+    cmts:[ { who:'@竹间', text:'油线确实出来了，羡慕。' }, { who:'@阿凯', text:'求问是哪个产区的料？' } ] },
+  { id:'p2', user:'@星月小白', av:'星', badge:'新人', bcls:'', time:'5 小时前', cat:1, n:16,
+    text:'第一串星月菩提，盘了一个月，求各位前辈指点～', likes:89, comments:12,
+    likedBy:{ who:'观藏垣 · 阿平', badge:'官方', bcls:'official' },
+    cmts:[ { who:'观藏垣 · 阿平', badge:'官方', bcls:'official', text:'白度不错，盘的时候手要干净，别沾水。' },
+           { who:'@老周', badge:'大佬', bcls:'vip', text:'月眼很正，慢慢盘，别急着上油。' } ] },
+  { id:'p3', user:'@阿凯', av:'凯', time:'昨天', cat:4, n:15,
+    text:'小叶紫檀老料 2.0，金星满布，盘了八个月，越来越亮。', likes:156, comments:23,
+    review:{ who:'@老周 · 认证藏家', text:'金星很密，料子不错。夏天出汗多，记得勤擦，别让汗渍留在表面。' },
+    cmts:[ { who:'@木木', text:'金星好密！' } ] },
+];
+const HEART = '<svg class="heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.6a4.3 4.3 0 017.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg>';
+const BUBBLE = '<svg viewBox="0 0 24 24"><path d="M12 4c4.4 0 8 3 8 6.8s-3.6 6.8-8 6.8c-.9 0-1.8-.1-2.6-.4L5 19l1.1-3.6A6.4 6.4 0 014 10.8C4 7 7.6 4 12 4z"/></svg>';
+const SHARE = '<svg viewBox="0 0 24 24"><path d="M4 13v6a2 2 0 002 2h12a2 2 0 002-2v-6M16 7l-4-4-4 4M12 3v13"/></svg>';
+const badgeHTML = (b, cls) => b ? `<span class="badge ${cls || ''}">${b}</span>` : '';
+
+function cmtHTML(c) {
+  const st = c.status === 'pending' ? '<span class="state pending">审核中</span>'
+    : c.status === 'rejected' ? '<span class="state rejected">未通过审核 · 仅自己可见</span>' : '';
+  return `<div class="cmt ${c.status || ''}">${badgeHTML(c.badge, c.bcls)}<span class="cmt-who">${esc(c.who)}</span><span class="cmt-body">${esc(c.text)}</span>${st}</div>`;
+}
+function postHTML(p) {
+  const liked = S.liked.has(p.id), fol = S.following.has(p.user), c = CATS[p.cat], open = S.openCmt === p.id;
+  const img = p.img ? `<img src="${p.img}" alt="">` : `<span class="wm">${c.wm}</span>${bracelet(p.cat, p.n)}`;
+  return `<article class="post${p.status === 'pending' ? ' pending' : ''}">
+    ${p.status === 'pending' ? '<div class="mod-bar">内容审核中 · 通过后所有盘友可见</div>' : ''}
+    <div class="post-head">
+      <div class="avatar${p.bcls === 'official' ? ' gold' : ''}">${esc(p.av)}</div>
+      <div class="post-who"><div class="post-name">${esc(p.user)}${badgeHTML(p.badge, p.bcls)}</div>
+      <div class="post-time">${p.time} · ${c.name}</div></div>
+      ${p.mine ? '' : `<button class="btn-follow" data-follow="${esc(p.user)}" aria-pressed="${fol}">${fol ? '已关注' : '+ 关注'}</button>`}
+    </div>
+    <p class="post-text">${esc(p.text)}</p>
+    <div class="post-img">${img}<span class="ptag">#${c.name}</span></div>
+    ${p.likedBy ? `<div class="likedby"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.6a4.3 4.3 0 017.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg>${badgeHTML(p.likedBy.badge, p.likedBy.bcls)}<b>${esc(p.likedBy.who)}</b>赞过</div>` : ''}
+    ${p.review ? `<div class="review"><div class="review-head"><span class="tag-slant">大佬点评</span>${esc(p.review.who)}</div><p>${esc(p.review.text)}</p></div>` : ''}
+    <div class="post-actions">
+      <button class="act" data-like="${p.id}" aria-pressed="${liked}" aria-label="点赞">${HEART}${p.likes + (liked ? 1 : 0)}</button>
+      <button class="act" data-cmt-toggle="${p.id}" aria-expanded="${open}" aria-label="评论">${BUBBLE}${p.comments}</button>
+      <button class="act share" data-share>${SHARE}分享</button>
+    </div>
+    ${open ? `<div class="cmts">
+      ${p.cmts.map(cmtHTML).join('')}
+      <form class="cmt-form" data-cmt-form="${p.id}"><input maxlength="100" placeholder="说点什么…" aria-label="写评论"><button>发送</button></form>
+      <p class="cmt-note">评论会先经过内容安全审核 · 发表评论 +2 积分</p>
+    </div>` : ''}
+  </article>`;
+}
+function renderFeed() {
+  let list = POSTS;
+  if (S.ctab === 'follow') list = POSTS.filter(p => S.following.has(p.user) || p.mine);
+  if (S.ctab === 'review') list = POSTS.filter(p => p.review);
+  $('#feed').innerHTML = list.length ? list.map(postHTML).join('')
+    : `<div class="empty"><b>还没有关注的盘友</b>在「推荐」里点「+ 关注」，他们发的新文玩会出现在这里</div>`;
+  document.querySelectorAll('.ctab').forEach(t => t.setAttribute('aria-selected', t.dataset.ctab === S.ctab));
+}
+document.querySelector('.ctabs').addEventListener('click', e => { const t = e.target.closest('.ctab'); if (t) { S.ctab = t.dataset.ctab; renderFeed(); } });
+$('#feed').addEventListener('click', e => {
+  const f = e.target.closest('[data-follow]'), l = e.target.closest('[data-like]'),
+        c = e.target.closest('[data-cmt-toggle]'), sh = e.target.closest('[data-share]');
+  if (f) { const u = f.dataset.follow; S.following.has(u) ? S.following.delete(u) : (S.following.add(u), toast(`已关注 ${u}`)); renderFeed(); }
+  if (l) {
+    const id = l.dataset.like;
+    if (S.liked.has(id)) { S.liked.delete(id); renderFeed(); return; }
+    S.liked.add(id);
+    let got = 0;
+    if (!S.likeAwarded.has(id)) { S.likeAwarded.add(id); got = earn('like'); }
+    renderFeed();
+    if (got) toast(`点赞成功${plus(got)}`);
+  }
+  if (c) { S.openCmt = S.openCmt === c.dataset.cmtToggle ? null : c.dataset.cmtToggle; renderFeed(); }
+  if (sh) { const got = earn('share'); toast(got ? `已调起抖音分享${plus(got)}` : '已调起抖音分享 · 今日分享积分已达上限'); }
+});
+$('#feed').addEventListener('submit', e => {
+  const form = e.target.closest('[data-cmt-form]'); if (!form) return;
+  e.preventDefault();
+  const text = form.querySelector('input').value.trim(); if (!text) return;
+  const p = POSTS.find(x => x.id === form.dataset.cmtForm);
+  const cm = { who: '@木木', text, status: 'pending' };
+  p.cmts.push(cm); renderFeed();
+  setTimeout(() => {
+    const hit = blocked(text);
+    if (hit) { cm.status = 'rejected'; renderFeed(); toast(`评论未通过审核：含违规内容「${hit}」`); return; }
+    cm.status = ''; p.comments++;
+    const got = earn('comment'); renderFeed();
+    toast(`评论已发布${plus(got)}`);
+  }, 1200);
+});
+
+/* 03 collection */
+const BASE = [
+  { t:'老料原珠', u:'@木木', l:128, dn:0 }, { t:'新入手 求鉴定', u:'@老周', l:64, dn:2 },
+  { t:'包浆前后对比', u:'@星月小白', l:236, dn:-1 }, { t:'配三通佛头', u:'@阿凯', l:41, dn:1 },
+  { t:'日常把玩款', u:'@竹间', l:87, dn:-2 }, { t:'收藏级老料', u:'@一叶', l:152, dn:-4 },
+];
+function renderColl() {
+  const c = CATS[S.coll], q = S.q.trim();
+  $('#coll-side').innerHTML = CATS.map((k, i) => `<button role="tab" aria-selected="${i === S.coll}" data-cat="${i}">${k.name}</button>`).join('');
+  $('#coll-name').textContent = c.name;
+  $('#coll-en').textContent = c.en;
+  const items = [...S.userItems[S.coll], ...BASE.map((b, i) => ({ ...b, n: c.n + b.dn, rot: i * .21 }))]
+    .filter(it => !q || (c.name + it.t + it.u).includes(q));
+  $('#coll-grid').innerHTML = items.length ? items.map((it, i) => `
+    <div class="item${it.mine ? ' mine' : ''}">
+      <div class="item-img">${it.img ? `<img src="${it.img}" alt="">` : bracelet(S.coll, it.n, it.rot)}<span class="item-no">NO.${pad2(i + 1)}</span>${it.status === 'pending' ? '<span class="mod">审核中</span>' : ''}</div>
+      <div class="item-body"><div class="item-title">【${c.name} · ${esc(it.t)}】</div>
+      <div class="item-foot"><span>${esc(it.u)}</span><span class="lk">♡ ${it.l}</span></div></div>
+    </div>`).join('')
+    : `<div class="empty"><b>没有找到「${esc(q)}」</b>换个关键词，或者切换左侧品类看看</div>`;
+}
+$('#coll-side').addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (b) { S.coll = +b.dataset.cat; renderColl(); } });
+$('#coll-q').addEventListener('input', e => { S.q = e.target.value; renderColl(); });
+
+/* 05 knowledge */
+function renderKnow() {
+  const c = CATS[S.know];
+  $('#know-chips').innerHTML = CATS.map((k, i) => `<button class="chip" role="tab" aria-selected="${i === S.know}" data-k="${i}">${k.name}</button>`).join('');
+  $('#know-ph').textContent = `搜一搜：${c.name}怎么辨真假`;
+  $('#know-name').textContent = c.name;
+  $('#know-en').textContent = `${c.en} · GUIDE`;
+  $('#xp-cat').textContent = c.name;
+  $('#know-arts').innerHTML = [`${c.name}入门：如何辨别真假`, '常见仿品与鉴别方法', '盘玩与保养注意事项']
+    .map((t, i) => `<button class="art" data-todo="文章详情页 · 开发阶段接入"><span class="art-no">${pad2(i + 1)}</span>${t}<span class="chev">›</span></button>`).join('');
+  $('#know-more').innerHTML = CATS.map((k, i) => i).filter(i => i !== S.know).slice(0, 4)
+    .map(i => `<button data-k="${i}"><span class="ball" style="background:${ball(i)}"></span><span><b>${CATS[i].name}</b><small>${CATS[i].en}</small></span></button>`).join('');
+}
+['#know-chips', '#know-more'].forEach(s => $(s).addEventListener('click', e => {
+  const b = e.target.closest('[data-k]'); if (!b) return;
+  S.know = +b.dataset.k; renderKnow();
+  if (s === '#know-more') $('#page-knowledge').scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  $('#know-chips [aria-selected="true"]').scrollIntoView({ inline: 'center', block: 'nearest' });
+}));
+
+/* 06 profile */
+$('#shop3').innerHTML = [0, 3, 4].map(i => `<button class="prod" data-todo="商品详情 · 跳转抖音小黄车"><div class="ph"><span class="ball" style="background:${ball(i)}"></span></div><div class="pb"><b>【商品名称】</b><span>¥【价格】</span></div></button>`).join('');
+
+/* points mall */
+const GIFTS = [
+  { id:'g1', cat:1, name:'星月菩提 · 入门款', cost:800,  stock:12 },
+  { id:'g2', cat:2, name:'橄榄核 · 素珠',     cost:1200, stock:8 },
+  { id:'g3', cat:3, name:'蜜蜡 · 圆珠',       cost:3000, stock:3 },
+  { id:'g4', cat:0, name:'沉香 · 108 子',     cost:6800, stock:1 },
+];
+let confirmT;
+function renderMall() {
+  $('#mall-grid').innerHTML = GIFTS.map(g => {
+    const short = g.cost - S.points;
+    let label = '兑换', cls = '', dis = '';
+    if (!g.stock) { label = '已兑完'; dis = 'disabled'; }
+    else if (short > 0) { label = `还差 ${fmt(short)} 积分`; dis = 'disabled'; }
+    else if (S.confirmGift === g.id) { label = `确认兑换 · -${fmt(g.cost)}`; cls = ' confirm'; }
+    return `<div class="gift"><div class="ph">${bracelet(g.cat)}</div><div class="gift-body">
+      <div class="gift-name">${g.name}</div>
+      <div class="gift-row"><span class="gift-cost">${fmt(g.cost)}<small>积分</small></span><span class="gift-stock">剩 ${g.stock} 件</span></div>
+      <button class="gift-btn${cls}" data-gift="${g.id}" ${dis}>${label}</button></div></div>`;
+  }).join('');
+  $('#rules').innerHTML = Object.values(RULES).map(r => `<tr><td>${r.t}</td><td>+${r.p}</td><td>每天 ${r.cap} 次</td></tr>`).join('');
+  $('#mall-log').innerHTML = S.log.slice(0, 8).map(l => `<div class="log"><div>${l.t}<small>${l.when}</small></div><b class="${l.p < 0 ? 'neg' : ''}">${l.p > 0 ? '+' : ''}${fmt(l.p)}</b></div>`).join('');
+}
+$('#mall-grid').addEventListener('click', e => {
+  const b = e.target.closest('[data-gift]'); if (!b || b.disabled) return;
+  const g = GIFTS.find(x => x.id === b.dataset.gift);
+  clearTimeout(confirmT);
+  if (S.confirmGift !== g.id) {
+    S.confirmGift = g.id; renderMall();
+    confirmT = setTimeout(() => { S.confirmGift = null; renderMall(); }, 4000);
+    return;
+  }
+  S.confirmGift = null; S.points -= g.cost; g.stock--;
+  S.log.unshift({ t: `兑换 ${g.name}`, p: -g.cost, when: '刚刚' });
+  renderPoints(); renderMall();
+  toast('兑换成功 · 请填写收货地址');
+});
+
+/* 04 upload */
+const presetPhotos = () => [{ kind:'bracelet' }, { kind:'bead' }];
+function renderUpload() {
+  const c = CATS[S.up];
+  $('#up-cats').innerHTML = CATS.map((k, i) => `<button role="radio" aria-checked="${i === S.up}" data-up="${i}">${k.name}</button>`).join('');
+  $('#up-hint').innerHTML = `审核通过后自动归入「<b>${c.name}</b>」专区，所有盘友可见`;
+  $('#up-go').textContent = `发布到「${c.name}」`;
+  const tiles = S.photos.map((p, i) => {
+    const inner = p.url ? `<img src="${p.url}" alt="">` : p.kind === 'bracelet' ? bracelet(S.up) : `<span class="bead" style="background:${ball(S.up)}"></span>`;
+    return `<div class="ph-tile">${inner}${i === 0 ? '<span class="cover">封面</span>' : ''}<button class="rm" data-rm="${i}" aria-label="删除这张照片">×</button></div>`;
+  });
+  if (S.photos.length < 9) tiles.push(`<button class="ph-tile ph-add" id="ph-add"><span class="plus">+</span>添加照片</button>`);
+  $('#photos').innerHTML = tiles.join('');
+  $('#ph-count').textContent = `${S.photos.length} / 9`;
+}
+function openUpload() {
+  if (S.tab === 'collection') S.up = S.coll;
+  if (!S.photos) S.photos = presetPhotos();
+  renderUpload(); openSub('upload');
+}
+$('#up-cats').addEventListener('click', e => { const b = e.target.closest('[data-up]'); if (b) { S.up = +b.dataset.up; renderUpload(); } });
+$('#photos').addEventListener('click', e => {
+  const rm = e.target.closest('[data-rm]');
+  if (rm) { S.photos.splice(+rm.dataset.rm, 1); renderUpload(); return; }
+  if (e.target.closest('#ph-add')) $('#ph-file').click();
+});
+$('#ph-file').addEventListener('change', e => {
+  for (const f of e.target.files) { if (S.photos.length >= 9) break; S.photos.push({ url: URL.createObjectURL(f) }); }
+  e.target.value = ''; renderUpload();
+});
+function upError(msg) {
+  const err = $('#up-err'); err.textContent = msg; err.hidden = false;
+  $('#up-name').classList.add('bad'); $('#up-name').focus();
+}
+$('#up-name').addEventListener('input', () => { $('#up-err').hidden = true; $('#up-name').classList.remove('bad'); });
+$('#up-go').onclick = () => {
+  const name = $('#up-name').value.trim(), desc = $('#up-desc').value.trim();
+  if (!name) return upError('请填写作品名称');
+  const hit = blocked(name + desc);
+  if (hit) return upError(`名称或描述含违规内容「${hit}」，请修改后再发布`);
+  if (!S.photos.length) { toast('至少上传 1 张照片'); return; }
+  const cat = S.up, cover = S.photos[0].url || null;
+  const item = { t: name, u: '@木木', l: 0, mine: true, img: cover, n: CATS[cat].n, status: 'pending' };
+  S.userItems[cat].unshift(item);
+  let post = null;
+  if ($('#up-sync').checked) {
+    post = { id: 'u' + Date.now(), user: '木木', av: '木', time: '刚刚', cat, img: cover, mine: true,
+      text: desc ? `${name}：${desc}` : name, likes: 0, comments: 0, cmts: [], status: 'pending' };
+    POSTS.unshift(post);
+  }
+  S.published++;
+  $('#st-items').textContent = pad2(6 + S.published);
+  $('#up-name').value = ''; $('#up-desc').value = ''; S.photos = presetPhotos();
+  closeSub($('#upload'));
+  S.coll = cat; S.q = ''; $('#coll-q').value = '';
+  renderColl(); renderFeed(); go('collection');
+  $('#page-collection').scrollTop = 0;
+  toast(`已提交审核 · 通过后归入「${CATS[cat].name}」专区`);
+  setTimeout(() => {
+    item.status = ''; if (post) post.status = '';
+    const got = earn('post');
+    renderColl(); renderFeed();
+    toast(`审核通过 · 已归入「${CATS[cat].name}」专区${plus(got)}`);
+  }, 2600);
+};
+
+renderPick(); restartAuto(); renderCheckin(); renderFeed(); renderColl(); renderKnow(); renderPoints(); go('home');
+</script>
+
+</body>
+</html>

@@ -319,6 +319,46 @@ img.photo{display:block;width:100%;height:100%;object-fit:cover}
 .bt-chips button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink);font-weight:900}
 .an-hint{font-size:12px;color:var(--ink-2);line-height:1.7}
 
+/* 配饰效果 */
+.f-label{font-size:11px;color:var(--ink-2);letter-spacing:.2em;margin-bottom:6px}
+.chips.sm{margin-bottom:14px}
+.chips.sm .chip{height:32px;padding:0 12px;font-size:13px}
+.ac-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ac{background:var(--card);border:1px solid var(--line);min-width:0}
+.ac-img{position:relative;aspect-ratio:1/1.1;background:var(--well);overflow:hidden}
+.ac-img .tg{position:absolute;left:0;bottom:8px;max-width:100%;background:var(--gold);color:var(--gold-ink);font:900 10px/1 var(--ff);padding:5px 7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ac-body{padding:8px}
+.ac-body b{display:block;font:900 13px/1.3 var(--ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ac-body span{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-2);margin-top:5px}
+
+/* 帮看老师认证 */
+.apply{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:14px;margin-top:24px;border:1px dashed var(--gold);background:none;text-align:left;cursor:pointer}
+.apply b{display:block;font:900 15px/1.2 var(--ff);letter-spacing:.06em}
+.apply small{display:block;font-size:11px;color:var(--ink-2);margin-top:4px}
+.apply span{color:var(--gold);font:900 13px/1 var(--ff);white-space:nowrap}
+.hc{display:flex;align-items:center;gap:10px;width:100%;padding:14px 12px;margin-bottom:7px;background:rgba(18,18,18,.8);border:1px solid var(--line);text-align:left;cursor:pointer}
+.hc div{flex:1;min-width:0}
+.hc b{display:block;font:900 15px/1.2 var(--ff);letter-spacing:.08em}
+.hc small{display:block;font-size:11px;color:var(--ink-2);margin-top:4px}
+.hc span{flex-shrink:0;padding:7px 11px;background:var(--gold);color:var(--gold-ink);font:900 12px/1 var(--ff)}
+.hc span.done{background:none;color:var(--gold);border:1px solid var(--gold)}
+.hc span.off{background:var(--raise);color:var(--ink-3)}
+.qz{margin-bottom:22px}
+.qz-t{display:flex;font:900 15px/1.5 var(--ff);margin-bottom:9px}
+.qz-t i{flex-shrink:0;width:28px;font:italic 900 17px/1.4 var(--ff-d);color:var(--gold)}
+.opt{display:flex;gap:8px;width:100%;padding:11px 12px;margin-bottom:6px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.4);font:500 14px/1.4 var(--ff);text-align:left;cursor:pointer}
+.opt em{font-style:normal;color:var(--ink-2);width:16px}
+.opt[aria-pressed="true"]{border-color:var(--gold);background:rgba(201,161,101,.12);color:var(--gold)}
+.opt.right{border-color:#6fbf73;color:#8fd493}
+.opt.wrong{border-color:var(--warn);color:var(--warn)}
+.qz-res{text-align:center;padding:20px 12px;margin-bottom:22px;border:1.5px solid var(--ink-3)}
+.qz-res.ok{border-color:var(--gold);background:var(--gold-wash)}
+.qz-res b{display:block;font:italic 900 60px/1 var(--ff-d);color:var(--gold)}
+.qz-res p{font:900 16px/1.4 var(--ff);margin-top:10px}
+.qz-res small{display:block;font-size:12px;color:var(--ink-2);margin-top:6px}
+.certs{display:flex;align-items:center;gap:8px;width:100%;padding:11px 12px;margin-bottom:12px;border:1px solid rgba(255,255,255,.14);background:none;font:500 13px/1 var(--ff);cursor:pointer}
+.certs span{flex:1;min-width:0;text-align:right;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
 /* toolbox */
 .tool{position:relative;display:flex;align-items:center;gap:4px;width:100%;padding:20px 14px;margin-bottom:10px;background:rgba(18,18,18,.8);border:1px solid var(--line);text-align:left;cursor:pointer}
 .tool.hot{border:1.5px solid var(--gold);background:var(--gold-wash)}
@@ -480,6 +520,278 @@ textarea.field{height:96px;resize:none}
 .toast{position:absolute;left:50%;bottom:calc(112px + env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);width:max-content;max-width:calc(100% - 32px);background:rgba(28,26,22,.96);border:1px solid var(--gold);padding:10px 16px;font-size:13px;opacity:0;transition:opacity .25s,transform .25s;z-index:100;pointer-events:none;text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+/* ---------- 圆角柔和版：卡片、按钮、标签都改成圆角，金色用渐变 ---------- */
+:root{--r:14px;--r-sm:9px;--gold-grad:linear-gradient(180deg,#ecd29d 0%,#c9a165 52%,#a77a3f 100%);--card-grad:linear-gradient(160deg,rgba(201,161,101,.14),rgba(20,18,15,.92) 46%);--card-line:rgba(201,161,101,.28)}
+.btn-gold,.cmt-form button,.gift-btn,.mk button,.hc span,.sel-go,.ct-actions .btn-gold{border-radius:999px;background:var(--gold-grad);box-shadow:0 6px 16px rgba(201,161,101,.22),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-gold:disabled,.gift-btn:disabled{box-shadow:none}
+.gift-btn.confirm{background:var(--ink)}
+.bounty span{background:var(--gold-ink);box-shadow:none}
+.gift-btn:disabled,.hc span.off{background:var(--raise)}
+.hc span.done{background:none;box-shadow:none}
+.btn-ghost,.btn-follow,.pts-go{border-radius:999px}
+.btn-ghost{border-width:1px;border-color:rgba(242,239,233,.55)}
+.tag-slant{clip-path:none;border-radius:999px;background:var(--gold-grad);font-style:normal;padding:5px 11px}
+.badge{clip-path:none;border-radius:5px;font-style:normal}
+.ttag{border-radius:5px}
+.mark{letter-spacing:.2em;margin-right:-.2em}
+.mark::after{left:0;right:auto;width:22px;height:3px;bottom:-9px;border-radius:2px;background:var(--gold-grad)}
+.sec-head{border-bottom:none;padding-bottom:16px}
+.side-label::before{border-radius:2px}
+.search,.chip,.cmt-form input,.notice{border-radius:999px}
+.search{border-width:1px;background:rgba(255,255,255,.04)}
+.notice{border-color:var(--card-line);padding:0 12px}
+.nt-tag{border-radius:999px;background:var(--gold-grad);padding:4px 8px}
+.chip{border-width:1px}
+.chip[aria-selected="true"],.cats4 button[aria-checked="true"],.bt-chips button[aria-pressed="true"]{background:var(--gold-grad)}
+
+/* 首页卡片 */
+.pick-wrap,.ck,.ct{border:1px solid var(--card-line);border-radius:18px;background:var(--card-grad);padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.ck{margin-top:18px}
+.ct{margin:14px 0 4px}
+.pick-title{font-size:clamp(26px,8.6vw,36px);margin:10px 0 6px}
+.pick-rule{height:2px;border-radius:2px;opacity:.7}
+.pick-img img.photo,.pick-img svg{border-radius:var(--r)}
+.dots{justify-content:center}
+.dots button{width:7px;height:7px;border-radius:50%;background:var(--ink-3)}
+.dots button[aria-current="true"]{width:18px;border-radius:4px;background:var(--gold)}
+.ck-grid{gap:6px}
+.ck-day{border-radius:7px;border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.ck-day.done{background:var(--gold-grad);border-color:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.ck-day.today{border-color:var(--gold)}
+.shop-bar{border-radius:var(--r);border:1px solid var(--card-line);background:rgba(255,255,255,.03);margin-top:14px}
+.ct-cell,.rk-img,.ask-img,.ad-imgs div{border-radius:var(--r-sm)}
+.mk{border-radius:var(--r-sm)}
+
+/* 通用卡片 */
+.post,.ask,.gift,.item,.tool,.ac,.vcell,.prod,.hc,.opt,.certs,.apply,.bounty,.sel,.xp,.goal,.pts,.advice-go,.ct-hd,.qz-res,.rp,.mall-bal,.up-note,.field,.ph-tile,.more button,.ttl div,.review,.cats4 button,.bt-chips button,.cmts,.ad-rule,.empty{border-radius:var(--r)}
+.post,.ask,.gift,.item,.tool,.ac,.hc,.rp,.more button,.ttl div{border-color:rgba(255,255,255,.08);background:rgba(255,255,255,.035)}
+.tool.hot,.sel,.xp,.goal,.advice-go,.ct-hd,.mall-bal,.qz-res.ok{background:var(--card-grad);border-color:var(--card-line)}
+.pts,.bounty{background:var(--gold-grad)}
+.post,.ask,.gift,.item,.ac,.vcell,.prod,.ph-tile,.sel,.xp{overflow:hidden}
+.post-img,.post-grid .pg,.item-img,.ac-img{border-radius:var(--r-sm)}
+.post-grid{gap:5px}
+.ptag,.post-grid .ptag{border-radius:0 6px 6px 0}
+.ac-img .tg{border-radius:0 6px 6px 0}
+.gift .ph,.prod .ph{border-radius:0}
+.ctab[aria-selected="true"]::after{height:3px;border-radius:2px;left:25%;right:25%;background:var(--gold-grad)}
+.coll{border-radius:var(--r)}
+.side{border-radius:0 var(--r) var(--r) 0;overflow:hidden}
+.toast{border-radius:999px}
+.sub-nav{background:rgba(29,29,29,.96)}
+.fab{background:var(--gold-grad)}
+
+
+/* ================= 效果图版：照客户给的 5 张效果图 ================= */
+:root{--ff-serif:"Songti SC","STSongti-SC-Bold","Noto Serif SC","Source Han Serif SC","SimSun",serif;--ff-en:"Cinzel","Trajan Pro","Didot","Bodoni 72","Playfair Display",Georgia,"Times New Roman",serif;
+  --card2:linear-gradient(180deg,#1c1a17,#141311);--line3:rgba(255,255,255,.07);--gold-grad2:linear-gradient(90deg,#a97c42 0%,#e9cf97 45%,#c9a165 70%,#a97c42 100%)}
+.app{background-color:#0b0a09;background-image:radial-gradient(ellipse at 50% -10%,rgba(201,161,101,.08),transparent 60%)}
+.t1{position:relative;font:900 22px/1 var(--ff-serif);letter-spacing:.06em;padding-bottom:9px}
+.t1::after,.t2::after{content:'';position:absolute;left:0;bottom:0;width:22px;height:2.5px;border-radius:2px;background:var(--gold-grad)}
+.t2{position:relative;font:900 17px/1 var(--ff-serif);letter-spacing:.06em;padding-bottom:8px}
+.ph2{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ph2 .capsule{margin-left:auto}
+.ico-btn{position:relative;width:34px;height:34px;display:grid;place-items:center;background:none;border:none;color:var(--ink);cursor:pointer}
+.ico-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ico-btn .dotn{position:absolute;top:2px;right:0;min-width:15px;height:15px;padding:0 4px;border-radius:8px;background:var(--gold-grad);color:var(--gold-ink);font:900 10px/15px var(--ff);text-align:center}
+.pill2{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:999px;background:var(--gold-grad);color:var(--gold-ink);font:900 10px/1 var(--ff);white-space:nowrap}
+.pill2.ghost{background:rgba(255,255,255,.08);color:var(--ink-2)}
+
+/* 首页 */
+#page-home{padding-top:8px;padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+.brand2{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.logo2{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font:900 15px/1 var(--ff-serif);flex-shrink:0}
+.b-en{font:700 15px/1 var(--ff-en);letter-spacing:.06em;white-space:nowrap}
+.b-cn{font:500 9px/1 var(--ff);color:var(--ink-2);letter-spacing:.25em;margin-top:5px}
+.brand2 .capsule{margin-left:auto}
+.notice2{display:flex;align-items:center;gap:8px;width:100%;height:30px;padding:0 12px;margin-bottom:10px;border-radius:999px;border:1px solid rgba(201,161,101,.35);background:rgba(201,161,101,.05);color:var(--ink);cursor:pointer;text-align:left}
+.notice2 svg{width:16px;height:16px;flex-shrink:0;fill:none;stroke:var(--gold);stroke-width:1.7}
+.notice2 .nt-win{font-size:11.5px}
+.hero{position:relative;height:140px;border-radius:14px;border:1px solid rgba(201,161,101,.4);background:linear-gradient(110deg,#221d16 0%,#16130f 55%,#2a2116 100%);overflow:hidden;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.45);transition:opacity .3s}
+.hero.fade{opacity:.3}
+.hero .h-img{position:absolute;right:-6px;top:50%;transform:translateY(-50%);width:140px;height:140px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 6px rgba(255,255,255,.04),0 10px 30px rgba(0,0,0,.6)}
+.hero .h-img img,.hero .h-img svg{width:100%;height:100%;object-fit:cover}
+.hero .h-info{position:relative;z-index:1;max-width:58%}
+.hero .h-tag{display:inline-block;padding:3px 7px;border-radius:4px;background:var(--gold-grad);color:var(--gold-ink);font:900 10px/1 var(--ff)}
+.hero .h-title{display:inline-block;font:400 23px/1 var(--ff-en);letter-spacing:.02em;margin:6px 0 4px;background:var(--gold-grad2);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.hero .h-name{font:900 15px/1.3 var(--ff-serif);margin-bottom:4px}
+.hero .h-meta{font-size:10.5px;color:var(--ink-2);margin-bottom:7px;white-space:nowrap}
+.hero .h-btn{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 12px;border-radius:999px;border:1px solid rgba(242,239,233,.5);background:rgba(0,0,0,.3);color:var(--ink);font:500 11px/1 var(--ff);cursor:pointer}
+.hero .h-dots{position:absolute;right:14px;bottom:8px;display:flex;justify-content:flex-end;gap:5px;z-index:2}
+.hero .h-dots button{width:5px;height:5px;border-radius:50%;border:none;padding:0;background:rgba(255,255,255,.3);cursor:pointer}
+.hero .h-dots button[aria-current="true"]{background:var(--gold)}
+.ck2{margin-top:8px;padding:12px 14px 12px;border-radius:14px;border:1px solid var(--line3);background:var(--card2);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.ck2-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
+.ck2-rule{font-size:11px;color:var(--ink-2);padding-left:8px;border-left:1px solid var(--ink-3)}
+.ck2-stat{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:8px}
+.ck2-stat b{font:400 40px/.9 var(--ff-en);background:var(--gold-grad2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ck2-stat small{font:700 11px/1 var(--ff);margin-left:4px;color:var(--ink)}
+.ck2-period{font-size:10.5px;color:var(--ink-2);text-align:right;line-height:1.6}
+.ck2-period span{color:var(--ink)}
+.ck2-week,.ck2-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.ck2-week{margin-bottom:5px}
+.ck2-week i{font-style:normal;text-align:center;font-size:10px;color:var(--ink-2)}
+.ck2-grid{margin-bottom:10px}
+.ck2-grid div{height:24px;display:grid;place-items:center;border-radius:6px;background:linear-gradient(180deg,#2a2723,#1f1d1a);color:var(--ink-3);font:500 11px/1 var(--ff);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.ck2-grid div.done{background:linear-gradient(180deg,#f0d9a4,#c9a165 60%,#a97c42);color:var(--gold-ink);font-weight:900;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.ck2-grid div.today{box-shadow:inset 0 0 0 1.5px var(--gold);color:var(--gold);font-weight:900}
+.mk2{display:flex;align-items:center;gap:8px;margin:-2px 0 8px;font-size:11px;color:var(--ink-2)}
+.mk2 b{color:var(--gold)}
+.mk2 button{margin-left:auto;height:24px;padding:0 10px;border-radius:999px;border:1px solid var(--gold);background:none;color:var(--gold);font:900 11px/1 var(--ff);cursor:pointer}
+.ck2 .btn-gold{height:42px;font-size:14px;letter-spacing:.12em;background:linear-gradient(90deg,#a97c42,#e9cf97 50%,#b88a4e)}
+.ck2-tip{font-size:10px;color:var(--ink-2);text-align:center;margin-top:7px}
+.shop2{display:flex;align-items:center;gap:9px;width:100%;height:42px;margin-top:10px;padding:0 14px;border-radius:12px;border:1px solid var(--line3);background:var(--card2);font:900 13px/1 var(--ff);letter-spacing:.08em;cursor:pointer;color:var(--ink)}
+.shop2 svg{width:19px;height:19px;fill:none;stroke:var(--ink);stroke-width:1.7}
+.shop2 span{margin-left:auto;font:700 12px/1 var(--ff-en);color:var(--gold);letter-spacing:.04em}
+
+/* 首页 · 鉴赏评比条：在轮播和打卡之间 */
+.ctl{display:flex;align-items:center;gap:9px;width:100%;margin-top:8px;padding:8px 12px;border-radius:12px;border:1px solid rgba(201,161,101,.4);background:linear-gradient(110deg,#221d16,#16130f);color:var(--ink);text-align:left;cursor:pointer}
+.ctl-tag{flex-shrink:0;padding:4px 7px;border-radius:4px;background:var(--gold-grad);color:var(--gold-ink);font:900 10px/1 var(--ff)}
+.ctl-tx{flex:1;min-width:0}
+.ctl-tx b{display:block;font:900 13px/1.25 var(--ff-serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctl-tx small{display:block;font-size:10px;color:var(--ink-2);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctl-top{display:flex;gap:3px;flex-shrink:0}
+.ctl-top i{position:relative;width:28px;height:28px;border-radius:6px;overflow:hidden;background:var(--well)}
+.ctl-top i img,.ctl-top i svg{width:100%;height:100%;object-fit:cover}
+.ctl-top em{position:absolute;left:0;top:0;padding:1px 3px;border-radius:0 0 4px 0;background:var(--gold);color:var(--gold-ink);font:italic 900 8px/1.2 var(--ff-d)}
+.ctl-go{flex-shrink:0;color:var(--gold);font:900 12px/1 var(--ff)}
+
+/* 盘友圈 */
+.ctabs2{display:flex;justify-content:space-between;padding:0 6px;margin-bottom:12px}
+.ctabs2 button{position:relative;background:none;border:none;color:var(--ink-2);font:500 15px/1 var(--ff);padding:6px 4px 10px;cursor:pointer}
+.ctabs2 button[aria-selected="true"]{color:var(--gold);font-weight:900}
+.ctabs2 button[aria-selected="true"]::after{content:'';position:absolute;left:25%;right:25%;bottom:0;height:2.5px;border-radius:2px;background:var(--gold-grad)}
+.p2{padding:14px;margin-bottom:10px;border-radius:14px;border:1px solid var(--line3);background:var(--card2)}
+.p2.pending{border:1px dashed var(--gold)}
+.p2-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.p2-av{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font:900 13px/1 var(--ff);color:var(--gold-ink);background:var(--gold-grad);overflow:hidden}
+.p2-av img{width:100%;height:100%;object-fit:cover}
+.p2-name{font:900 14px/1.2 var(--ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:34%}
+.p2-head .badge,.p2-head .pill2{flex-shrink:0}
+.p2-fol{background:none;border:none;color:var(--gold);font:700 11px/1 var(--ff);cursor:pointer;padding:2px}
+.p2-head time{margin-left:auto;font-size:11px;color:var(--ink-3);white-space:nowrap}
+.p2-text{font-size:14px;line-height:1.6;margin-bottom:10px;overflow-wrap:anywhere}
+.p2-imgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;max-width:76%;margin-bottom:10px}
+.p2-imgs div{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--well)}
+.p2-imgs.one{grid-template-columns:1fr;max-width:100%}
+.p2-imgs.one div{aspect-ratio:2/1}
+.p2-imgs div img,.p2-imgs div svg{width:100%;height:100%;object-fit:cover}
+.p2-acts{display:flex;justify-content:space-between;padding:0 4px}
+.p2-acts button{display:flex;align-items:center;gap:5px;background:none;border:none;color:var(--ink-2);font:400 12px/1 var(--ff);cursor:pointer;padding:4px 0}
+.p2-acts svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6}
+.p2-acts button[aria-pressed="true"]{color:var(--gold)}
+.p2-acts button[aria-pressed="true"] svg{fill:currentColor}
+.p2 .review{margin-bottom:10px;padding:9px 11px;border-radius:10px;border:1px solid rgba(201,161,101,.45);background:rgba(201,161,101,.05);font-size:12.5px}
+.act-banner{display:flex;align-items:center;gap:10px;width:100%;padding:12px 14px;margin-bottom:10px;border-radius:14px;border:1px solid rgba(201,161,101,.45);background:linear-gradient(110deg,#221d16,#16130f);color:var(--ink);text-align:left;cursor:pointer}
+.act-banner b{display:block;font:900 15px/1.3 var(--ff-serif)}
+.act-banner small{display:block;font-size:11px;color:var(--ink-2);margin-top:3px}
+.act-banner span{margin-left:auto;color:var(--gold);font:900 12px/1 var(--ff);white-space:nowrap}
+.fabs[data-for="community"] .fab{width:52px;height:52px;font-size:0;gap:0;box-shadow:0 8px 20px rgba(201,161,101,.3)}
+.fabs[data-for="community"] .fab svg{width:24px;height:24px;stroke-width:2.2}
+
+/* 藏宝阁 */
+.sp-search{display:flex;align-items:center;gap:8px;height:40px;padding:0 4px 0 12px;margin-bottom:12px;border-radius:12px;border:1px solid var(--line3);background:rgba(255,255,255,.05)}
+.sp-search svg{width:16px;height:16px;flex-shrink:0;fill:none;stroke:var(--ink-2);stroke-width:2}
+.sp-search input{flex:1;min-width:0;background:none;border:none;color:var(--ink);font:400 13px/1 var(--ff);outline:none}
+.sp-search input::placeholder{color:var(--ink-3)}
+.sp-search button{width:44px;height:32px;border-radius:8px;border:none;background:var(--gold-grad);display:grid;place-items:center;cursor:pointer}
+.sp-search button svg{stroke:var(--gold-ink)}
+.sp-cat1{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--gr)) 10px 0;padding-right:var(--gr)}
+.sp-cat1::-webkit-scrollbar,.sp-cat2::-webkit-scrollbar{display:none}
+.sp-cat1 button{position:relative;flex-shrink:0;background:none;border:none;color:var(--ink-2);font:500 14px/1 var(--ff);padding:4px 0 9px;cursor:pointer}
+.sp-cat1 button[aria-selected="true"]{color:var(--ink);font-weight:900;font-size:16px}
+.sp-cat1 button[aria-selected="true"]::after{content:'';position:absolute;left:20%;right:20%;bottom:0;height:2.5px;border-radius:2px;background:var(--gold-grad)}
+.sp-cat2{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--gr)) 10px 0;padding-right:var(--gr)}
+.sp-cat2 button{flex-shrink:0;height:28px;padding:0 13px;border-radius:999px;border:1px solid transparent;background:rgba(255,255,255,.06);color:var(--ink);font:400 12px/1 var(--ff);cursor:pointer}
+.sp-cat2 button[aria-selected="true"]{border-color:var(--gold);color:var(--gold);background:rgba(201,161,101,.08);font-weight:700}
+.sp-filter{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:12px;color:var(--ink-2);white-space:nowrap;overflow-x:auto;scrollbar-width:none}
+.sp-filter::-webkit-scrollbar{display:none}
+.sp-filter button{flex-shrink:0;background:none;border:none;color:var(--ink-2);font:400 12px/1 var(--ff);padding:3px 0;cursor:pointer}
+.sp-filter button[aria-selected="true"]{color:var(--gold);font-weight:900}
+.sp-filter .sep{width:1px;height:12px;background:var(--ink-3);flex-shrink:0}
+.sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sp-card{display:flex;flex-direction:column;min-width:0;border-radius:12px;overflow:hidden;border:1px solid var(--line3);background:var(--card2);cursor:pointer}
+.sp-card .im{position:relative;aspect-ratio:1;background:var(--well)}
+.sp-card .im img,.sp-card .im svg{display:block;width:100%;height:100%;object-fit:cover}
+.sp-card .bd{padding:9px 10px 10px}
+.sp-card .bd{flex:1;display:flex;flex-direction:column}
+.sp-card b{display:block;font:900 13px/1.35 var(--ff);height:2.7em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.sp-card .sp-spec{font-size:11px;color:var(--ink-2);margin-top:4px}
+.sp-card .sp-row{display:flex;align-items:baseline;gap:6px;margin-top:auto;padding-top:8px}
+.sp-card .sp-price{font:400 19px/1 var(--ff-en);color:var(--gold)}
+.sp-card .sp-price small{font-size:12px;margin-right:1px}
+.sp-card .sp-sold{font-size:10.5px;color:var(--ink-3)}
+.sp-card .sp-add{margin-left:auto;height:22px;padding:0 8px;border-radius:6px;border:none;background:var(--gold-grad);color:var(--gold-ink);font:900 11px/1 var(--ff);cursor:pointer}
+.pd-img{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--well);margin-bottom:14px}
+.pd-img img,.pd-img svg{width:100%;height:100%;object-fit:cover}
+.pd-price{font:400 30px/1 var(--ff-en);color:var(--gold)}
+.pd-price small{font-size:16px}
+.pd-name{font:900 19px/1.35 var(--ff-serif);margin:10px 0 6px}
+.pd-meta{font-size:12px;color:var(--ink-2);margin-bottom:14px}
+.pd-box{padding:12px 14px;border-radius:12px;border:1px solid var(--line3);background:var(--card2);font-size:13px;line-height:1.7;color:var(--ink-2);margin-bottom:10px}
+.pd-box b{color:var(--ink)}
+.pd-foot{display:flex;gap:8px}
+.pd-foot .btn-ghost{flex-shrink:0;height:46px;padding:0 16px}
+.pd-foot .btn-gold{flex:1;height:46px}
+.cart-row{display:flex;align-items:center;gap:10px;padding:10px;margin-bottom:8px;border-radius:12px;border:1px solid var(--line3);background:var(--card2)}
+.cart-row .im{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--well)}
+.cart-row .im img,.cart-row .im svg{width:100%;height:100%;object-fit:cover}
+.cart-row .in{flex:1;min-width:0}
+.cart-row .in b{display:block;font:900 13px/1.3 var(--ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-row .in span{display:block;font:400 15px/1 var(--ff-en);color:var(--gold);margin-top:8px}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:24px;height:24px;border-radius:50%;border:1px solid var(--line-2);background:none;color:var(--ink);cursor:pointer;font-size:14px;line-height:1}
+.cart-sum{display:flex;align-items:baseline;justify-content:space-between;margin:14px 0 6px;font-size:13px}
+.cart-sum b{font:400 24px/1 var(--ff-en);color:var(--gold)}
+
+/* 工具箱 */
+.search2{display:flex;align-items:center;gap:8px;width:100%;height:38px;padding:0 14px;margin-bottom:12px;border-radius:999px;border:1px solid var(--line3);background:rgba(255,255,255,.05);color:var(--ink-3);font:400 13px/1 var(--ff);text-align:left;cursor:pointer}
+.search2 svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
+.tb{display:flex;align-items:center;gap:14px;width:100%;padding:15px 14px;margin-bottom:9px;border-radius:14px;border:1px solid var(--line3);background:var(--card2);color:var(--ink);text-align:left;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.tb>svg{width:40px;height:40px;flex-shrink:0;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tb .tx{flex:1;min-width:0}
+.tb .tx b{display:block;font:900 18px/1.2 var(--ff-serif);letter-spacing:.04em}
+.tb .tx small{display:block;font-size:11.5px;color:var(--ink-2);margin-top:5px}
+.tb .chev{color:var(--ink-2);font-size:20px}
+.tb.hot{display:block;border:1.5px solid rgba(201,161,101,.75);background:linear-gradient(160deg,rgba(201,161,101,.14),#16130f 55%);cursor:default}
+.tb.hot .row{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.tb.hot .btn-gold{height:40px;font-size:14px;letter-spacing:.1em;background:linear-gradient(90deg,#a97c42,#e9cf97 50%,#b88a4e)}
+.tb-link{display:block;width:100%;margin-top:4px;background:none;border:none;color:var(--ink-2);font:400 12px/1 var(--ff);text-align:center;cursor:pointer;padding:8px}
+
+/* 我的 */
+.me3{display:flex;align-items:center;gap:12px;margin:4px 0 14px}
+.me3-av{width:58px;height:58px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font:900 22px/1 var(--ff-serif);color:var(--gold);background:radial-gradient(circle at 35% 30%,#3a3128,#14110e);box-shadow:0 0 0 2px rgba(201,161,101,.6),0 0 0 5px rgba(201,161,101,.12)}
+.me3-in{flex:1;min-width:0}
+.me3-name{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font:900 20px/1.2 var(--ff-serif)}
+.me3-id{font-size:11px;color:var(--ink-2);margin-top:6px}
+.pts3{display:block;width:100%;padding:12px 14px 10px;margin-bottom:12px;border-radius:14px;border:none;background:linear-gradient(100deg,#b88a4e 0%,#ead09a 40%,#c9a165 70%,#a77a3f 100%);color:var(--gold-ink);text-align:left;cursor:pointer;box-shadow:0 8px 22px rgba(201,161,101,.22),inset 0 1px 0 rgba(255,255,255,.4)}
+.pts3-top{display:flex;align-items:center;justify-content:space-between}
+.pts3-top span{font:900 16px/1 var(--ff-serif)}
+.pts3-top b{font:400 36px/1 var(--ff-en)}
+.pts3-sub{display:flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:999px;background:rgba(26,20,8,.82);color:#d8c6a0;font-size:10.5px;white-space:nowrap;overflow:hidden}
+.pts3-sub i{width:8px;height:8px;border-radius:50%;background:var(--gold-grad);flex-shrink:0}
+.card3{padding:12px;margin-bottom:12px;border-radius:14px;border:1px solid var(--line3);background:var(--card2)}
+.card3-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.card3-head button{background:none;border:none;color:var(--ink-2);font:400 11px/1 var(--ff);cursor:pointer;padding:2px}
+.vault{gap:6px}
+.vcell{border-radius:8px;border:none;background:var(--well)}
+.vcell .vn{display:none}
+.vcell .vp{top:auto;bottom:5px;right:5px;padding:3px 6px;border-radius:4px;background:rgba(0,0,0,.6);color:var(--ink);font:italic 600 9px/1 var(--ff)}
+.menu3{border-radius:14px;border:1px solid var(--line3);background:var(--card2);padding:2px 12px}
+.menu3 button{display:flex;align-items:center;gap:10px;width:100%;padding:13px 0;border:none;border-bottom:1px solid var(--line3);background:none;color:var(--ink);font:400 14px/1 var(--ff);cursor:pointer;text-align:left}
+.menu3 button:last-child{border-bottom:none}
+.menu3 svg{width:18px;height:18px;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.menu3 em{font-style:normal;color:var(--ink-2)}
+.menu3 .v{margin-left:auto;color:var(--gold);font-size:12px;max-width:50%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.menu3 .arr{margin-left:auto;color:var(--ink-3)}
+.menu3 .v+.arr{margin-left:6px}
+
+/* 底部导航 */
+.tabbar{background:#0e0d0b;border-top:1px solid rgba(255,255,255,.05)}
+.tabbar button{position:relative}
+.tabbar [aria-selected="true"]{color:var(--gold)}
+.tabbar [aria-selected="true"] svg{fill:rgba(201,161,101,.28);filter:drop-shadow(0 0 6px rgba(201,161,101,.45))}
+.tabbar [aria-selected="true"]::before{content:'';position:absolute;top:-1px;left:30%;right:30%;height:2px;border-radius:2px;background:var(--gold-grad)}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -490,57 +802,45 @@ textarea.field{height:96px;resize:none}
 
   <!-- 01 首页 -->
   <main class="page" id="page-home">
-    <header class="brand">
-      <div class="logo">平</div>
-      <div class="brand-txt"><div class="brand-en">APING COLLECTION</div><div class="brand-cn">阿平文玩 · 观藏垣</div></div>
+    <header class="brand2">
+      <div class="logo2">平</div>
+      <div><div class="b-en">APING COLLECTION</div><div class="b-cn">阿平文玩 · 观藏垣</div></div>
       <div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div>
     </header>
+    <button class="notice2" id="notice"><svg viewBox="0 0 24 24"><path d="M4 9.5h3l5-4v13l-5-4H4z"/><path d="M16 9a4 4 0 010 6M18.5 6.5a7.5 7.5 0 010 11"/></svg><span class="nt-win" id="nt-text"></span></button>
+    <section class="hero" id="pick-wrap" aria-label="今日最佳与评比"></section>
 
-    <button class="notice" id="notice"><span class="nt-tag">公告</span><span class="nt-win" id="nt-text"></span><span class="nt-go">›</span></button>
-
-    <section aria-label="今日最佳与活动">
-      <div class="pick-wrap" id="pick-wrap"></div>
-      <div class="dots" id="pick-dots"></div>
-    </section>
-
-    <section class="ct" aria-label="鉴赏评比">
-      <div class="sec-head"><h2 class="mark">评比</h2><span class="side-label" id="ct-title"></span></div>
-      <div class="ct-body" data-open-contest style="cursor:pointer">
-        <div class="ct-info">
-          <div><span class="ct-num" id="ct-left">6</span><span class="ct-unit">天后截止</span></div>
-          <div class="ct-meta" id="ct-meta"></div>
-          <div class="ct-prize">冠军：[奖品待定] · 亚军、季军：[奖品待定]</div>
-        </div>
-        <div class="ct-top" id="ct-top"></div>
-      </div>
-      <div class="ct-actions"><button class="btn-gold" data-join-contest>上传参赛</button><button class="btn-ghost" data-open-contest>看排名 →</button></div>
-    </section>
-
-    <button class="shop-bar" data-todo="将跳转至抖音小黄车 · 阿平严选">
-      <svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 001.5 1.1h8.6a1.5 1.5 0 001.5-1.1L21 7H6"/></svg>
-      阿平严选 · 小黄车<span class="go">SHOP →</span>
+    <button class="ctl" data-open-contest aria-label="鉴赏评比">
+      <span class="ctl-tag">评比</span>
+      <span class="ctl-tx"><b>第 3 期鉴赏评比</b><small id="ctl-meta">6 天后截止</small></span>
+      <span class="ctl-top" id="ctl-top"></span>
+      <span class="ctl-go">参赛 ›</span>
     </button>
 
-    <section class="ck" aria-label="打卡">
-      <div class="sec-head"><h2 class="mark">打卡</h2><span class="side-label">连续 30 天 · 免费领手串</span></div>
-      <div class="ck-stat">
-        <div><span class="ck-num" id="ck-num">12</span><span class="ck-of">/ 30 DAYS</span></div>
-        <div class="ck-period">本期 10.15 – 11.13<br>还差 <b id="ck-left">18</b> 天领取</div>
+    <section class="ck2" aria-label="打卡">
+      <div class="ck2-head"><h2 class="t2">打卡</h2><span class="ck2-rule">连续 30 天 · 免费领手串</span></div>
+      <div class="ck2-stat">
+        <div><b id="ck-num">12</b><small>/30 DAYS</small></div>
+        <div class="ck2-period">本期 10.15 – 11.13<br>还差 <span id="ck-left">18</span> 天领取</div>
       </div>
-      <div class="ck-grid" id="ck-grid"></div>
-      <div class="mk" id="mk"><div class="mk-t">昨天断签了 1 天<small>有 <span id="mk-cards">1</span> 张补签卡，一张补一天，补上就接着之前的进度</small></div><button id="mk-btn">补签续上</button></div>
+      <div class="ck2-week" id="ck-week"></div>
+      <div class="ck2-grid" id="ck-grid"></div>
+      <div class="mk2" id="mk">昨天断签 1 天 · 补签卡 <b id="mk-cards">1</b> 张<button id="mk-btn">补签续上</button></div>
       <button class="btn-gold" id="ck-btn"></button>
-      <p class="ck-tip">每次打卡 <b>+10</b> 积分，可在积分商城兑换手串和补签卡</p>
+      <p class="ck2-tip">每次打卡 +10 积分，可在积分商城兑换手串</p>
     </section>
+
+    <button class="shop2" data-todo="将跳转至抖音小黄车 · 阿平严选"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 001.5 1.1h8.6a1.5 1.5 0 001.5-1.1L21 7H6"/></svg>阿平严选 · 小黄车<span>SHOP →</span></button>
   </main>
 
   <!-- 02 盘友圈 -->
   <main class="page" id="page-community" hidden>
-    <header class="bar-top"><h1 class="ptitle">盘友圈<span class="en">COMMUNITY</span></h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
-    <div class="ctabs" role="tablist">
+    <header class="ph2"><h1 class="t1">盘友圈</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <div class="ctabs2 ctabs" role="tablist">
       <button class="ctab" role="tab" data-ctab="rec" aria-selected="true">推荐</button>
+      <button class="ctab" role="tab" data-ctab="new" aria-selected="false">最新</button>
       <button class="ctab" role="tab" data-ctab="follow" aria-selected="false">关注</button>
-      <button class="ctab" role="tab" data-ctab="review" aria-selected="false">大佬点评</button>
+      <button class="ctab" role="tab" data-ctab="act" aria-selected="false">活动</button>
     </div>
     <div id="feed"></div>
   </main>
@@ -583,26 +883,24 @@ textarea.field{height:96px;resize:none}
 
   <!-- 03 藏宝阁 -->
   <main class="page" id="page-treasure" hidden>
-    <header class="bar-top"><h1 class="ptitle">藏宝阁<span class="en">TREASURE</span></h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
-    <div class="sel">
-      <span class="wm">SELECTED</span>
-      <span class="tag-slant">阿平严选</span>
-      <h2>甄选好串 · 小黄车下单</h2>
-      <p>运营方选品上架，在抖音小黄车直接下单</p>
-      <button class="sel-go" data-todo="将跳转至抖音小黄车 · 阿平严选"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 001.5 1.1h8.6a1.5 1.5 0 001.5-1.1L21 7H6"/></svg>去小黄车逛逛<span class="en">SHOP →</span></button>
-    </div>
-    <div class="sec-head"><h2 class="mark">积分兑</h2><button class="side-label" style="background:none;border:none;cursor:pointer" data-open-mall>我的积分 <span id="tr-pts">1,280</span> →</button></div>
-    <div class="tr-grid" id="tr-grid"></div>
-    <button class="tr-all" data-open-mall>进入积分商城 →</button>
+    <header class="ph2"><h1 class="t1">藏宝阁</h1><button class="ico-btn" data-open-cart aria-label="购物车" style="margin-left:auto"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 001.5 1.1h8.6a1.5 1.5 0 001.5-1.1L21 7H6"/></svg><span class="dotn" id="cart-n" hidden>0</span></button><div class="capsule" style="margin-left:0" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <div class="sp-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="sp-q" type="search" placeholder="搜索：星月/老型/顶珠…" autocomplete="off"><button aria-label="搜索" id="sp-go"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button></div>
+    <div class="sp-cat1" id="sp-cat1" role="tablist"></div>
+    <div class="sp-cat2" id="sp-cat2"></div>
+    <div class="sp-filter" id="sp-filter"></div>
+    <div class="sp-grid" id="sp-grid"></div>
   </main>
 
   <!-- 04 工具箱 -->
   <main class="page" id="page-toolbox" hidden>
-    <header class="bar-top"><h1 class="ptitle">工具箱<span class="en">TOOLBOX</span></h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
-    <button class="search" data-go="knowledge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span>搜科普：蜜蜡怎么辨真假</span></button>
-    <button class="tool" data-go="knowledge"><span class="tool-no">01</span><span class="tool-info"><span class="tool-name">文玩科普<small>GUIDE</small></span><span class="tool-sub" style="display:block">入门知识 · 真假辨别 · 盘玩保养</span></span><span class="chev">›</span></button>
-    <button class="tool" data-go="collection"><span class="tool-no">02</span><span class="tool-info"><span class="tool-name">图鉴大赏<small>GALLERY</small></span><span class="tool-sub" style="display:block">盘友晒串 · 按品类浏览 · 上传你的串</span></span><span class="chev">›</span></button>
-    <button class="tool hot" data-go="advice"><span class="tool-no">03</span><span class="tool-info"><span class="tool-name">买串避坑<small>ADVICE</small></span><span class="tool-sub" style="display:block">买之前问一问 · 帮看老师给购买建议</span></span><span class="chev">›</span></button>
+    <header class="ph2"><h1 class="t1">工具箱</h1><button class="ico-btn" data-todo="工具箱设置 · 开发阶段接入" aria-label="设置" style="margin-left:auto"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8l1.6 2.3 2.7-.6.9 2.6 2.6.9-.6 2.7 2.3 1.6-2.3 1.6.6 2.7-2.6.9-.9 2.6-2.7-.6L12 21.2l-1.6-2.3-2.7.6-.9-2.6-2.6-.9.6-2.7L2.5 12l2.3-1.6-.6-2.7 2.6-.9.9-2.6 2.7.6z"/></svg></button><div class="capsule" style="margin-left:0" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <button class="search2" data-go="knowledge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>搜科普 / 配饰 / 品类…</button>
+    <button class="tb" data-go="knowledge"><svg viewBox="0 0 48 48"><path d="M24 12c-4-3-10-4-17-3v26c7-1 13 0 17 3 4-3 10-4 17-3V9c-7-1-13 0-17 3z"/><path d="M24 12v26"/></svg><div class="tx"><b>文玩科普</b><small>从入门到精通，小白必看</small></div><span class="chev">›</span></button>
+    <button class="tb" data-go="collection"><svg viewBox="0 0 48 48"><rect x="7" y="9" width="34" height="30" rx="2"/><path d="M7 33l11-11 8 8 5-5 10 10"/><circle cx="32" cy="17" r="3"/></svg><div class="tx"><b>图鉴大赏</b><small>万玩家晒串图鉴，按品类浏览</small></div><span class="chev">›</span></button>
+    <button class="tb" data-go="accessory"><svg viewBox="0 0 48 48"><path d="M9 6c2 14 8 22 15 25 7-3 13-11 15-25"/><circle cx="24" cy="37" r="5"/><path d="M24 31v1"/></svg><div class="tx"><b>配饰效果</b><small>主串 × 配饰搭配参考图</small></div><span class="chev">›</span></button>
+    <div class="tb hot"><div class="row"><svg style="width:40px;height:40px;flex-shrink:0;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 48 48"><path d="M6 16a3 3 0 013-3h6l3-4h12l3 4h6a3 3 0 013 3v20a3 3 0 01-3 3H9a3 3 0 01-3-3z"/><circle cx="24" cy="25" r="7"/><path d="M40 5l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/></svg><div class="tx"><b>AI识串</b><small>拍照识别你的串，估价看品相</small></div></div><button class="btn-gold" data-todo="AI识串 · 客户方案里定为后续上线"><svg style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:3" viewBox="0 0 48 48"><path d="M6 16a3 3 0 013-3h6l3-4h12l3 4h6a3 3 0 013 3v20a3 3 0 01-3 3H9a3 3 0 01-3-3z"/><circle cx="24" cy="25" r="7"/><path d="M40 5l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/></svg>立即拍照识别</button></div>
+    <button class="tb" data-go="advice"><svg viewBox="0 0 48 48"><path d="M24 5l15 6v11c0 10-6 18-15 21C15 40 9 32 9 22V11z"/><path d="M24 15l2.5 5 5.5.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.5-.8z"/></svg><div class="tx"><b>买串避坑</b><small>花积分请大佬帮看串，少走弯路</small></div><span class="chev">›</span></button>
+    <button class="tb-link" data-open-helper>申请成为帮看大佬 →</button>
   </main>
 
   <!-- 工具箱 · 买串避坑 -->
@@ -627,60 +925,64 @@ textarea.field{height:96px;resize:none}
     </div>
     <div class="sec-head"><span class="side-label" id="adv-h"></span></div>
     <div id="adv-arts"></div>
+    <button class="apply" data-open-helper><span style="all:unset"><b>懂串？申请成为帮看老师</b><small>按品类答题认证，回答求帮看赚悬赏积分</small></span><span>去认证 →</span></button>
     <p class="adv-note">帮看提供的是基于经验和行情的购买建议，仅供参考，不是鉴定结论，也不作为交易或维权依据。文玩为非标品，请理性消费。</p>
+  </main>
+
+  <!-- 工具箱 · 配饰效果 -->
+  <main class="page" id="page-accessory" hidden>
+    <header class="bar-top"><button class="pg-back" data-go="toolbox" aria-label="返回工具箱"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><h1 class="ptitle">配饰效果<span class="en">MATCHING</span></h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <label class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="ac-q" type="search" placeholder="搜配饰或材质：三通、蜜蜡顶珠、星月" autocomplete="off">
+    </label>
+    <div class="f-label">配饰</div>
+    <div class="chips sm" id="ac-accs"></div>
+    <div class="f-label">主串材质</div>
+    <div class="chips sm" id="ac-cats"></div>
+    <p class="example" style="margin:-4px 0 10px">示例搭配：配饰效果图等客户提供实拍后替换</p>
+    <div class="ac-grid" id="ac-grid"></div>
   </main>
 
   <!-- 06 我的 -->
   <main class="page" id="page-profile" hidden>
-    <header class="bar-top"><h1 class="en" style="font-size:22px;color:var(--gold)">MY PROFILE</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
-    <div class="me">
-      <div class="avatar">木</div>
-      <div class="me-info">
-        <div class="me-name">木木 <span class="tag-slant">盘龄 3 年</span></div>
-        <div class="me-bio">抖音授权登录 · 沉香 / 蜜蜡爱好者</div>
+    <header class="ph2" style="margin-bottom:0"><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <div class="me3">
+      <div class="me3-av">木</div>
+      <div class="me3-in">
+        <div class="me3-name">木木盘串 <span class="pill2">潜力玩家</span><span class="pill2 ghost">青铜评者</span></div>
+        <div class="me3-id">ID: 880123 · 加入 365 天</div>
       </div>
-      <button class="btn-ghost" data-todo="编辑资料 · 开发阶段接入">编辑</button>
+      <button class="ico-btn" data-todo="设置 · 账号与安全" aria-label="设置"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8l1.6 2.3 2.7-.6.9 2.6 2.6.9-.6 2.7 2.3 1.6-2.3 1.6.6 2.7-2.6.9-.9 2.6-2.7-.6L12 21.2l-1.6-2.3-2.7.6-.9-2.6-2.6-.9.6-2.7L2.5 12l2.3-1.6-.6-2.7 2.6-.9.9-2.6 2.7.6z"/></svg></button>
     </div>
-    <div class="stats">
-      <div><b id="st-ck">12</b><span>连续打卡</span></div>
-      <div><b id="st-items">06</b><span>宝库藏品</span></div>
-      <div><b>328</b><span>获赞</span></div>
-    </div>
-    <div class="pts">
-      <div><span class="pts-label">我的积分</span><b class="pts-num" id="pts">1,280</b></div>
-      <button class="pts-go" data-open-mall>积分商城 →</button>
-    </div>
-    <div class="ttl">
-      <div><small>宝友称号 · 作品获赞</small><b>潜力玩家</b><span>328 赞 · 再 272 赞升「资深玩家」</span></div>
-      <div><small>评者等级 · 评论获赞</small><b>青铜评者</b><span>126 赞 · 再 174 赞升「白银评者」</span></div>
-    </div>
-    <div class="goal">
-      <div class="goal-top"><b>打卡领手串</b><span id="goal-days">12 / 30 DAYS</span></div>
-      <div class="meter"><i id="goal-bar" style="width:40%"></i></div>
-      <p id="goal-hint">再坚持 18 天即可免费领取，记得填写收货地址</p>
-      <p style="margin-top:6px">补签卡 <b id="goal-cards" style="color:var(--gold)">1</b> 张 · 断签时可以补上</p>
-    </div>
-    <div class="sec-head"><h2 class="mark">宝库</h2><button class="side-label" style="background:none;border:none;cursor:pointer" data-todo="我的宝库 · 全部藏品列表">全部 →</button></div>
-    <div class="vault" id="vault"></div>
-    <nav class="menu">
-      <button data-open-mall><span>积分明细</span><span class="arr">→</span></button>
-      <button data-todo="打卡记录 · 开发阶段接入"><span>打卡记录</span><span class="arr">→</span></button>
-      <button data-todo="我的宝库 · 全部藏品列表"><span>我的宝库</span><span class="arr">→</span></button>
-      <button data-go="advice"><span>我的求帮看</span><span class="arr">→</span></button>
+    <button class="pts3" data-open-mall>
+      <div class="pts3-top"><span>当前积分</span><b id="pts">1,280</b></div>
+      <div class="pts3-sub"><i></i>每日签到 +10 · 发帖 +2 · 可兑换手串 / 抵扣 / 帮看</div>
+    </button>
+    <section class="card3">
+      <div class="card3-head"><h2 class="t2">我的宝库</h2><button data-todo="我的宝库 · 全部藏品列表"><span id="vault-n">6</span> 条 ›</button></div>
+      <div class="vault" id="vault"></div>
+    </section>
+    <nav class="menu3">
+      <button data-todo="我的发布 · 作品列表"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-6"/></svg>我的发布<em>(<span id="st-items">06</span>)</em><span class="arr">›</span></button>
+      <button data-open-favs><svg viewBox="0 0 24 24"><rect x="4" y="3" width="13" height="17" rx="2"/><path d="M8 8h5M8 12h5M14 20l6-6"/></svg>我的收藏<em>(<span id="fav-n">0</span>)</em><span class="arr">›</span></button>
+      <button data-go="advice"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.1-1.5 2.2M12 16.5v.1"/></svg>我的求帮看<span class="arr">›</span></button>
+      <button data-open-helper><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>帮看认证<span class="v" id="me-certs">还没有，去答题认证</span><span class="arr">›</span></button>
+      <button data-open-mall><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M3 9h18M12 9v11M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z"/></svg>积分商城<span class="v">补签卡 <span id="goal-cards">1</span> 张</span><span class="arr">›</span></button>
+      <button data-todo="打卡记录 · 开发阶段接入"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>打卡记录<span class="v">已连续 <span id="st-ck">11</span> 天</span><span class="arr">›</span></button>
+      <button data-todo="将打开抖音私信 · 客服阿平"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>联系客服阿平<span class="arr">›</span></button>
+      <button data-todo="设置 · 账号与安全"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8l1.6 2.3 2.7-.6.9 2.6 2.6.9-.6 2.7 2.3 1.6-2.3 1.6.6 2.7-2.6.9-.9 2.6-2.7-.6L12 21.2l-1.6-2.3-2.7.6-.9-2.6-2.6-.9.6-2.7L2.5 12l2.3-1.6-.6-2.7 2.6-.9.9-2.6 2.7.6z"/></svg>设置<span class="arr">›</span></button>
     </nav>
   </main>
 
   <div class="fabs" data-for="community" hidden>
-    <button class="fab" data-open-upload><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>发文玩</button>
+    <button class="fab" data-open-upload aria-label="发文玩"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
   </div>
   <div class="fabs" data-for="collection" hidden>
     <button class="fab mini" aria-label="分享" data-todo="将调起抖音分享"><svg viewBox="0 0 24 24"><path d="M4 13v6a2 2 0 002 2h12a2 2 0 002-2v-6M16 7l-4-4-4 4M12 3v13"/></svg></button>
     <button class="fab" data-open-upload><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 012-2h2.5l1.5-2h6l1.5 2H19a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg>上传</button>
   </div>
 
-  <div class="fabs" data-for="treasure" hidden>
-    <button class="fab mini" aria-label="联系客服" data-todo="将打开抖音客服会话"><svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg></button>
-  </div>
 
   <nav class="tabbar" role="tablist" aria-label="主导航">
     <button role="tab" data-tab="home" aria-selected="true"><svg viewBox="0 0 24 24"><path d="M3.5 10.5L12 3.5l8.5 7V20a1 1 0 01-1 1h-5v-6h-5v6h-5a1 1 0 01-1-1z"/></svg>首页</button>
@@ -779,6 +1081,45 @@ textarea.field{height:96px;resize:none}
     <div class="sub-foot"><button class="btn-gold" id="an-go"></button></div>
   </section>
 
+  <!-- 申请成为帮看老师 -->
+  <section class="sub" id="helper" aria-label="申请成为帮看老师" aria-hidden="true">
+    <div class="sub-nav">
+      <button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <h1>申请成为帮看老师</h1>
+      <div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div>
+    </div>
+    <div class="sub-body">
+      <div class="intro"><b>懂哪类串，就考哪类</b><p>选一个品类答题，答对 80% 就能认证。认证后名字后面显示「XX大佬」，可以回答这个品类的悬赏求帮看，被采纳就拿走悬赏积分。</p></div>
+      <div id="hc-list"></div>
+      <p class="adv-note">题目由平台在后台按品类出题，每次随机抽题，每个品类每天能考 1 次（次数和及格线都能在后台调）。</p>
+    </div>
+  </section>
+
+  <!-- 答题认证 -->
+  <section class="sub" id="quiz" aria-label="帮看老师认证" aria-hidden="true">
+    <div class="sub-nav">
+      <button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <h1>帮看老师认证</h1>
+      <div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div>
+    </div>
+    <div class="sub-body" id="qz-body"></div>
+    <div class="sub-foot"><button class="btn-gold" id="qz-go"></button></div>
+  </section>
+
+  <!-- 商品详情 -->
+  <section class="sub" id="prod" aria-label="商品详情" aria-hidden="true">
+    <div class="sub-nav"><button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><h1>商品详情</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></div>
+    <div class="sub-body" id="prod-body"></div>
+    <div class="sub-foot pd-foot"><button class="btn-ghost" id="pd-fav">☆ 收藏</button><button class="btn-ghost" id="pd-cart">加购</button><button class="btn-gold" id="pd-buy">立即购买</button></div>
+  </section>
+
+  <!-- 购物车 / 收藏 -->
+  <section class="sub" id="cart" aria-label="购物车" aria-hidden="true">
+    <div class="sub-nav"><button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><h1 id="cart-title">购物车</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></div>
+    <div class="sub-body" id="cart-body"></div>
+    <div class="sub-foot" id="cart-foot"><button class="btn-gold" id="cart-go">联系客服下单</button></div>
+  </section>
+
   <!-- 积分商城 -->
   <section class="sub" id="mall" aria-label="积分商城" aria-hidden="true">
     <div class="sub-nav">
@@ -808,6 +1149,7 @@ textarea.field{height:96px;resize:none}
 
 <script>
 const $ = s => document.querySelector(s);
+const setT = (sel, v) => { const el = document.querySelector(sel); if (el) el.textContent = v; };
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pad2 = n => String(n).padStart(2, '0');
 const fmt = n => n.toLocaleString('en-US');
@@ -894,7 +1236,7 @@ const plus = p => p ? ` · +${p} 积分` : '';
 function renderPoints() {
   $('#pts').textContent = fmt(S.points);
   $('#mall-pts').textContent = fmt(S.points);
-  $('#tr-pts').textContent = fmt(S.points);
+  setT('#tr-pts', fmt(S.points));
   $('#an-pts').textContent = fmt(S.points);
   if ($('#mall').classList.contains('open')) renderMall();
 }
@@ -905,12 +1247,13 @@ function closeSub(el) { el.classList.remove('open'); el.setAttribute('aria-hidde
 
 /* tabs */
 /* 文玩科普、图鉴大赏、买串避坑都在「工具箱」下面 */
-const PARENT = { knowledge: 'toolbox', collection: 'toolbox', advice: 'toolbox' };
+const PARENT = { knowledge: 'toolbox', collection: 'toolbox', accessory: 'toolbox', advice: 'toolbox' };
 function go(tab) {
   S.tab = tab;
   document.querySelectorAll('.page').forEach(p => p.hidden = p.id !== 'page-' + tab);
   if (PARENT[tab]) $('#page-' + tab).scrollTop = 0;
   if (tab === 'advice') { S.adv = S.know; renderAdvice(); }
+  if (tab === 'accessory') renderAccessory();
   document.querySelectorAll('.tabbar button').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === (PARENT[tab] || tab)));
   document.querySelectorAll('.fabs').forEach(f => f.hidden = f.dataset.for !== tab);
 }
@@ -925,21 +1268,21 @@ const PICKS = [
 function renderPick() {
   const p = PICKS[S.pick];
   $('#pick-wrap').innerHTML = `
-    <span class="tag-slant">${p.event ? '限时活动' : '今日最佳'}</span>
-    <h1 class="pick-title">${p.event ? 'EVENT' : "TODAY'S PICK"}</h1>
-    <div class="pick-rule"></div>
-    <div class="pick-slide">
-      <div class="pick-info"><div class="pick-name">【${p.name}】</div><div class="pick-meta">${p.meta}</div>
-        <button class="btn-ghost" data-todo="${p.event ? '活动详情页' : '作品详情页'} · 开发阶段接入">${p.event ? '查看活动' : '查看详情'} →</button></div>
-      <div class="pick-img">${bracelet(p.cat, p.n)}${p.event ? '<div class="event-x"><div><small>积分</small>×2</div></div>' : ''}</div>
-    </div>`;
-  $('#pick-dots').innerHTML = PICKS.map((_, i) => `<button aria-label="第 ${i + 1} 张" aria-current="${i === S.pick}" data-pick="${i}"></button>`).join('');
+    <div class="h-img">${bracelet(p.cat, p.n)}</div>
+    <div class="h-info">
+      <span class="h-tag">${p.event ? '限时活动' : '今日最佳'}</span>
+      <div class="h-title">${p.event ? 'EVENT' : "TODAY'S PICK"}</div>
+      <div class="h-name">【${p.name}】</div>
+      <div class="h-meta">${p.meta}</div>
+      <button class="h-btn" data-todo="${p.event ? '活动详情页' : '作品详情页'} · 开发阶段接入">${p.event ? '查看活动' : '查看详情'} →</button>
+    </div>
+    <div class="h-dots">${PICKS.map((_, i) => `<button aria-label="第 ${i + 1} 张" aria-current="${i === S.pick}" data-pick="${i}"></button>`).join('')}</div>`;
 }
 function setPick(i) {
   const el = $('#pick-wrap'); el.classList.add('fade');
   setTimeout(() => { S.pick = i; renderPick(); el.classList.remove('fade'); }, 250);
 }
-$('#pick-dots').addEventListener('click', e => { const b = e.target.closest('[data-pick]'); if (b) { setPick(+b.dataset.pick); restartAuto(); } });
+$('#pick-wrap').addEventListener('click', e => { const b = e.target.closest('[data-pick]'); if (b) { setPick(+b.dataset.pick); restartAuto(); } });
 let autoT;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 function restartAuto() { clearInterval(autoT); if (!reduce) autoT = setInterval(() => S.tab === 'home' && setPick((S.pick + 1) % PICKS.length), 5000); }
@@ -947,9 +1290,11 @@ function restartAuto() { clearInterval(autoT); if (!reduce) autoT = setInterval(
 /* 01 home: check-in */
 function renderCheckin() {
   const today = S.checkedToday ? 0 : S.checked + 1;
+  const start = new Date(2026, 9, 15);
+  $('#ck-week').innerHTML = Array.from({ length: 7 }, (_, i) => `<i>${'日一二三四五六'[(start.getDay() + i) % 7]}</i>`).join('');
   $('#ck-grid').innerHTML = Array.from({ length: 30 }, (_, i) => {
-    const d = i + 1, cls = d <= S.checked ? ' done' : d === today ? ' today' : '';
-    return `<div class="ck-day${cls}">${d}</div>`;
+    const d = i + 1, cls = d <= S.checked ? 'done' : d === today ? 'today' : '';
+    return `<div class="${cls}">${d}</div>`;
   }).join('');
   const left = 30 - S.checked;
   $('#ck-num').textContent = S.checked;
@@ -959,13 +1304,12 @@ function renderCheckin() {
     btn.disabled = S.checkedToday;
     btn.textContent = S.checkedToday ? '✓ 今日已打卡 · 明天再来' : `▶ 看广告打卡 · 第 ${S.checked + 1} 天`;
   }
-  $('#st-ck').textContent = pad2(S.checked);
-  $('#goal-days').textContent = `${S.checked} / 30 DAYS`;
-  $('#goal-bar').style.width = (S.checked / 30 * 100).toFixed(1) + '%';
-  $('#goal-hint').textContent = `再坚持 ${left} 天即可免费领取，记得填写收货地址`;
+  setT('#st-ck', pad2(S.checked));
+  setT('#goal-days', `${S.checked} / 30 DAYS`);
+  setT('#goal-hint', `再坚持 ${left} 天即可免费领取，记得填写收货地址`);
   $('#mk').hidden = !S.missed || S.checkedToday;
   $('#mk-cards').textContent = S.cards;
-  $('#goal-cards').textContent = S.cards;
+  setT('#goal-cards', S.cards);
   $('#mk-btn').textContent = S.cards >= S.missed ? '补签续上' : '兑换补签卡';
 }
 $('#mk-btn').onclick = () => {
@@ -991,7 +1335,7 @@ $('#ck-btn').onclick = () => {
 
 /* 02 community */
 const POSTS = [
-  { id:'p1', user:'观藏垣 · 阿平', av:'平', badge:'官方', bcls:'official', title:'潜力玩家', time:'2 小时前', cat:1, n:0,
+  { id:'p1', contest:true, user:'观藏垣 · 阿平', av:'平', badge:'官方', bcls:'official', title:'潜力玩家', time:'2 小时前', cat:1, n:0,
     text:'给大家看看这批高密星月菩提，月眼正、星点密，盘一段时间会慢慢泛黄。', likes:328, comments:46, imgs:4,
     likedBy:{ who:'@老周', badge:'大佬', bcls:'vip' },
     review:{ who:'@老周 · 认证藏家', text:'颜色走得很匀，再盘半年包浆会更漂亮。' },
@@ -1001,7 +1345,7 @@ const POSTS = [
     likedBy:{ who:'观藏垣 · 阿平', badge:'官方', bcls:'official' },
     cmts:[ { who:'观藏垣 · 阿平', badge:'官方', bcls:'official', text:'白度不错，盘的时候手要干净，别沾水。', likes:41, ctitle:'白银评者' },
            { who:'@老周', badge:'大佬', bcls:'vip', text:'月眼很正，慢慢盘，别急着上油。', likes:118, ctitle:'神评师' } ] },
-  { id:'p3', user:'@阿凯', av:'凯', title:'明星玩家', time:'昨天', cat:4, n:0, imgs:2,
+  { id:'p3', contest:true, user:'@阿凯', av:'凯', title:'明星玩家', time:'昨天', cat:4, n:0, imgs:2,
     text:'小叶紫檀老料 2.0，金星满布，盘了八个月，越来越亮。', likes:156, comments:23,
     review:{ who:'@老周 · 认证藏家', text:'金星很密，料子不错。夏天出汗多，记得勤擦，别让汗渍留在表面。' },
     cmts:[ { who:'@木木', text:'金星好密！', likes:2 } ] },
@@ -1019,25 +1363,24 @@ function cmtHTML(c) {
   return `<div class="cmt ${c.status || ''}">${badgeHTML(c.badge, c.bcls)}<span class="cmt-who">${esc(c.who)}</span>${c.ctitle ? `<span class="ttag" style="margin-right:6px">${c.ctitle}</span>` : ''}<span class="cmt-body">${esc(c.text)}</span>${like}${st}</div>`;
 }
 function postHTML(p) {
-  const liked = S.liked.has(p.id), fol = S.following.has(p.user), c = CATS[p.cat], open = S.openCmt === p.id;
-  const img = p.img ? `<img src="${p.img}" alt="">` : `<span class="wm">${c.wm}</span>${bracelet(p.cat, p.n)}`;
-  return `<article class="post${p.status === 'pending' ? ' pending' : ''}">
+  const liked = S.liked.has(p.id), fol = S.following.has(p.user), open = S.openCmt === p.id;
+  const n = p.imgs || 1;
+  const pics = p.img ? [`<img src="${p.img}" alt="">`] : Array.from({ length: Math.min(4, n) }, (_, k) => bracelet(p.cat, p.n + k, 0));
+  return `<article class="p2${p.status === 'pending' ? ' pending' : ''}">
     ${p.status === 'pending' ? '<div class="mod-bar">内容审核中 · 通过后所有盘友可见</div>' : ''}
-    <div class="post-head">
-      <div class="avatar${p.bcls === 'official' ? ' gold' : ''}">${esc(p.av)}</div>
-      <div class="post-who"><div class="post-name">${esc(p.user)}${badgeHTML(p.badge, p.bcls)}${p.title ? `<span class="ttag">${p.title}</span>` : ''}</div>
-      <div class="post-time">${p.time} · ${c.name}</div></div>
-      ${p.mine ? '' : `<button class="btn-follow" data-follow="${esc(p.user)}" aria-pressed="${fol}">${fol ? '已关注' : '+ 关注'}</button>`}
+    <div class="p2-head">
+      <div class="p2-av">${esc(p.av)}</div>
+      <span class="p2-name">${esc(p.user.replace(/^@/, ''))}</span>${p.badge ? badgeHTML(p.badge, p.bcls) : ''}${p.title ? `<span class="pill2">${p.title}</span>` : ''}
+      ${p.mine || fol ? '' : `<button class="p2-fol" data-follow="${esc(p.user)}">+关注</button>`}
+      <time>${p.time}</time>
     </div>
-    <p class="post-text">${esc(p.text)}</p>
-    ${p.imgs > 1 ? `<div class="post-grid">${[0, 1, 2].slice(0, Math.min(3, p.imgs)).map(k => `<div class="pg">${bracelet(p.cat, p.n + k, 0)}${k === 2 && p.imgs > 3 ? `<span class="more-n">+${p.imgs - 3}</span>` : ''}</div>`).join('')}<span class="ptag">#${c.name}</span></div>`
-      : `<div class="post-img">${img}<span class="ptag">#${c.name}</span></div>`}
-    ${p.likedBy ? `<div class="likedby"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.6a4.3 4.3 0 017.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg>${badgeHTML(p.likedBy.badge, p.likedBy.bcls)}<b>${esc(p.likedBy.who)}</b>赞过</div>` : ''}
-    ${p.review ? `<div class="review"><div class="review-head"><span class="tag-slant">大佬点评</span>${esc(p.review.who)}</div><p>${esc(p.review.text)}</p></div>` : ''}
-    <div class="post-actions">
-      <button class="act" data-like="${p.id}" aria-pressed="${liked}" aria-label="点赞">${HEART}${p.likes + (liked ? 1 : 0)}</button>
-      <button class="act" data-cmt-toggle="${p.id}" aria-expanded="${open}" aria-label="评论">${BUBBLE}${p.comments}</button>
-      <button class="act share" data-share>${SHARE}分享</button>
+    <p class="p2-text">${esc(p.text)}</p>
+    <div class="p2-imgs${pics.length === 1 ? ' one' : ''}">${pics.map(x => `<div>${x}</div>`).join('')}</div>
+    ${p.review ? `<div class="review"><b style="color:var(--gold)">大佬点评</b> ${esc(p.review.who)}：${esc(p.review.text)}</div>` : ''}
+    <div class="p2-acts">
+      <button data-like="${p.id}" aria-pressed="${liked}" aria-label="点赞">${HEART}${p.likes + (liked ? 1 : 0)} 赞</button>
+      <button data-cmt-toggle="${p.id}" aria-expanded="${open}" aria-label="评论">${BUBBLE}${p.comments} 评论</button>
+      <button data-share>${SHARE}转发</button>
     </div>
     ${open ? `<div class="cmts">
       ${p.cmts.map(cmtHTML).join('')}
@@ -1048,10 +1391,12 @@ function postHTML(p) {
 }
 function renderFeed() {
   let list = POSTS;
+  if (S.ctab === 'rec') list = [...POSTS].sort((a, b) => b.likes - a.likes);
   if (S.ctab === 'follow') list = POSTS.filter(p => S.following.has(p.user) || p.mine);
-  if (S.ctab === 'review') list = POSTS.filter(p => p.review);
-  $('#feed').innerHTML = list.length ? list.map(postHTML).join('')
-    : `<div class="empty"><b>还没有关注的盘友</b>在「推荐」里点「+ 关注」，他们发的新文玩会出现在这里</div>`;
+  if (S.ctab === 'act') list = POSTS.filter(p => p.contest);
+  const banner = S.ctab === 'act' ? '<button class="act-banner" data-open-contest><div><b>第 3 期 · 文玩鉴赏评比</b><small>6 天后截止 · 按点赞排名 · 前三有奖</small></div><span>看排名 →</span></button>' : '';
+  $('#feed').innerHTML = banner + (list.length ? list.map(postHTML).join('')
+    : `<div class="empty"><b>${S.ctab === 'follow' ? '还没有关注的盘友' : '这里还空着'}</b>${S.ctab === 'follow' ? '在「推荐」里点「+关注」，他们发的新文玩会出现在这里' : '点右下角发一串'}</div>`);
   document.querySelectorAll('.ctab').forEach(t => t.setAttribute('aria-selected', t.dataset.ctab === S.ctab));
 }
 document.querySelector('.ctabs').addEventListener('click', e => { const t = e.target.closest('.ctab'); if (t) { S.ctab = t.dataset.ctab; renderFeed(); } });
@@ -1159,9 +1504,8 @@ const ranked = () => ENTRIES.filter(e => !e.status).sort((a, b) => (b.likes + (b
 const HEART_SVG = '<svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.6a4.3 4.3 0 017.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg>';
 function renderContest() {
   const list = ranked();
-  $('#ct-title').textContent = '第 3 期 · 文玩鉴赏评比';
-  $('#ct-meta').textContent = `已有 ${list.length} 件参赛 · 按点赞排名`;
-  $('#ct-top').innerHTML = list.slice(0, 3).map((e, i) => `<div class="ct-cell">${e.img ? `<img class="photo" src="${e.img}" alt="">` : bracelet(e.cat, e.n)}<b>${i + 1}</b></div>`).join('');
+  $('#ctl-meta').textContent = `6 天后截止 · ${list.length} 件参赛`;
+  $('#ctl-top').innerHTML = list.slice(0, 3).map((e, i) => `<i>${e.img ? `<img class="photo" src="${e.img}" alt="">` : bracelet(e.cat, e.n)}<em>${i + 1}</em></i>`).join('');
   $('#ctp-title').textContent = '第 3 期 · 文玩鉴赏评比';
   $('#ctp-time').textContent = '10.29 – 11.04 · 还剩 6 天';
   $('#ctp-count').textContent = `${list.length} 件参赛`;
@@ -1269,6 +1613,180 @@ $('#an-go').onclick = () => {
   }, 3000);
 };
 
+/* 藏宝阁 · 甄选商城：一级大类 → 二级品种 → 器型，搜索、排序、收藏、购物车 */
+const SHOP_CATS = [
+  { name: '树籽类', subs: ['星月菩提', '橄榄核', '金刚菩提', '百香籽', '紫金鼠', '核尖', '猴头'] },
+  { name: '木串类', subs: ['小叶紫檀', '沉香', '黄花梨', '崖柏'] },
+  { name: '牙骨角类', subs: ['牦牛骨', '猛犸牙'] },
+  { name: '珠宝类', subs: ['蜜蜡', '南红', '绿松石'] },
+  { name: '配饰类', subs: ['三通', '顶珠', '隔片'] },
+];
+const SHAPES = ['老型', '道珠', '圆珠', '直切', '原桩'];
+const GOODS = [
+  { id: 1, c1: 0, c2: '星月菩提', shape: '圆珠', name: '星月菩提 · 高密白玉', spec: '高密 · 108 颗', price: 168, sold: 236, cat: 1, n: 1, h: 1.25, date: 6 },
+  { id: 2, c1: 1, c2: '小叶紫檀', shape: '圆珠', name: '小叶紫檀 · 满金星', spec: '老料 2.0 · 15 颗', price: 398, sold: 128, cat: 4, n: 0, h: 1, date: 3 },
+  { id: 3, c1: 0, c2: '橄榄核', shape: '老型', name: '橄榄核 108 · 配蜜蜡顶珠', spec: '108 颗', price: 268, sold: 512, cat: 2, n: 0, h: 1, date: 5 },
+  { id: 4, c1: 0, c2: '星月菩提', shape: '道珠', name: '星月菩提 · 青皮道珠', spec: '青皮 · 21 颗', price: 128, sold: 89, cat: 1, n: 0, h: 1.3, date: 1 },
+  { id: 5, c1: 1, c2: '小叶紫檀', shape: '直切', name: '小叶紫檀 · 老料直切', spec: '2.0 · 18 颗', price: 680, sold: 46, cat: 4, n: 1, h: 1.15, date: 2 },
+  { id: 6, c1: 0, c2: '橄榄核', shape: '圆珠', name: '橄榄核 · 素珠手串', spec: '18 颗', price: 198, sold: 301, cat: 2, n: 1, h: 1.2, date: 4 },
+  { id: 7, c1: 0, c2: '星月菩提', shape: '老型', name: '星月菩提 · 老型桶珠', spec: '108 颗', price: 158, sold: 172, cat: 1, n: 3, h: 1, date: 7 },
+];
+const SP = { c1: -1, c2: '', shape: '', sort: 'all', q: '', cart: {}, favs: new Set(), cur: null };
+const yuan = n => `<small>¥</small>${n}`;
+function renderShop() {
+  $('#sp-cat1').innerHTML = [-1, ...SHOP_CATS.map((_, i) => i)].map(i => `<button role="tab" data-c1="${i}" aria-selected="${i === SP.c1}">${i < 0 ? '全部' : SHOP_CATS[i].name}</button>`).join('');
+  const subs = SP.c1 < 0 ? SHOP_CATS.flatMap(c => c.subs).slice(0, 10) : SHOP_CATS[SP.c1].subs;
+  $('#sp-cat2').innerHTML = subs.map(n => `<button data-c2="${n}" aria-selected="${n === SP.c2}">${n}</button>`).join('');
+  $('#sp-filter').innerHTML = `器型：${['', ...SHAPES].map(n => `<button data-shape="${n}" aria-selected="${n === SP.shape}">${n || '全部'}</button>`).join('')}<span class="sep"></span>`
+    + [['all', '综合'], ['price', '价格'], ['new', '最新']].map(([k, l]) => `<button data-sort="${k}" aria-selected="${k === SP.sort}">${l}${k === 'price' ? '↑' : ''}</button>`).join('');
+  const q = SP.q.trim();
+  let list = GOODS.filter(g => (SP.c1 < 0 || g.c1 === SP.c1) && (!SP.c2 || g.c2 === SP.c2) && (!SP.shape || g.shape === SP.shape) && (!q || (g.name + g.c2 + g.shape + g.spec).includes(q)));
+  if (SP.sort === 'price') list = [...list].sort((a, b) => a.price - b.price);
+  else if (SP.sort === 'new') list = [...list].sort((a, b) => b.date - a.date);
+  else list = [...list].sort((a, b) => b.sold - a.sold);
+  $('#sp-grid').innerHTML = list.length ? list.map(g => `<div class="sp-card" data-goods="${g.id}">
+    <div class="im">${bracelet(g.cat, g.n)}</div>
+    <div class="bd"><b>${g.name}</b><div class="sp-spec">${g.shape} · ${g.spec}</div>
+    <div class="sp-row"><span class="sp-price">${yuan(g.price)}</span><span class="sp-sold">已售 ${g.sold}</span><button class="sp-add" data-add="${g.id}">加购</button></div></div></div>`).join('')
+    : '<div class="empty" style="grid-column:1/-1">没有找到符合条件的商品<br>换个分类或关键词试试</div>';
+  const n = Object.values(SP.cart).reduce((a, b) => a + b, 0);
+  $('#cart-n').hidden = !n; $('#cart-n').textContent = n;
+  setT('#fav-n', SP.favs.size);
+}
+function addCart(id) { SP.cart[id] = (SP.cart[id] || 0) + 1; renderShop(); toast('已加入购物车'); }
+function openGoods(id) {
+  const g = GOODS.find(x => x.id === id); SP.cur = g;
+  $('#prod-body').innerHTML = `<div class="pd-img">${bracelet(g.cat, g.n)}</div>
+    <div style="display:flex;align-items:baseline;gap:10px"><span class="pd-price">${yuan(g.price)}</span><span class="sp-sold">已售 ${g.sold}</span></div>
+    <h2 class="pd-name">${g.name}</h2>
+    <div class="pd-meta">${SHOP_CATS[g.c1].name} · ${g.c2} · ${g.shape} · ${g.spec}</div>
+    <div class="pd-box"><b>阿平严选</b> · 运营方选品，实物拍摄。<br>付款：在抖音小黄车下单，或联系客服阿平下单。<br>积分可以兑换「小黄车抵扣券」，下单时抵扣。</div>
+    <div class="pd-box">文玩为非标品，图片与实物可能有细微差异，下单前可以先问客服要视频。</div>`;
+  $('#pd-fav').textContent = SP.favs.has(id) ? '★ 已收藏' : '☆ 收藏';
+  openSub('prod');
+}
+function openCart(favs = false) {
+  const rows = favs ? [...SP.favs].map(id => [GOODS.find(g => g.id === id), 1]) : Object.entries(SP.cart).map(([id, q]) => [GOODS.find(g => g.id === +id), q]);
+  $('#cart-title').textContent = favs ? '我的收藏' : '购物车';
+  const total = rows.reduce((a, [g, q]) => a + g.price * q, 0);
+  $('#cart-body').innerHTML = rows.length ? rows.map(([g, q]) => `<div class="cart-row"><div class="im">${bracelet(g.cat, g.n)}</div>
+    <div class="in"><b>${g.name}</b><span>¥${g.price}</span></div>
+    ${favs ? `<button class="sp-add" data-goods="${g.id}">查看</button>` : `<div class="qty"><button data-q="${g.id}:-1">−</button>${q}<button data-q="${g.id}:1">+</button></div>`}</div>`).join('')
+    + (favs ? '' : `<div class="cart-sum"><span>合计 ${rows.reduce((a, [, q]) => a + q, 0)} 件</span><b>¥${total}</b></div><p class="adv-note">小程序里暂不直接付款：点下面的按钮会复制商品清单并打开客服私信，客服确认后发小黄车链接给你付款。积分兑换的抵扣券在小黄车下单时使用。</p>`)
+    : `<div class="empty"><b>${favs ? '还没有收藏' : '购物车是空的'}</b>去藏宝阁逛逛</div>`;
+  $('#cart-foot').hidden = favs || !rows.length;
+  openSub('cart');
+}
+$('#sp-cat1').addEventListener('click', e => { const b = e.target.closest('[data-c1]'); if (b) { SP.c1 = +b.dataset.c1; SP.c2 = ''; renderShop(); } });
+$('#sp-cat2').addEventListener('click', e => { const b = e.target.closest('[data-c2]'); if (b) { SP.c2 = SP.c2 === b.dataset.c2 ? '' : b.dataset.c2; renderShop(); } });
+$('#sp-filter').addEventListener('click', e => {
+  const sh = e.target.closest('[data-shape]'); if (sh) { SP.shape = sh.dataset.shape; renderShop(); }
+  const so = e.target.closest('[data-sort]'); if (so) { SP.sort = so.dataset.sort; renderShop(); }
+});
+$('#sp-q').addEventListener('input', e => { SP.q = e.target.value; renderShop(); });
+$('#sp-go').onclick = () => renderShop();
+document.addEventListener('click', e => {
+  const add = e.target.closest('[data-add]'); if (add) { addCart(+add.dataset.add); return; }
+  const gd = e.target.closest('[data-goods]'); if (gd) { if ($('#cart').classList.contains('open')) closeSub($('#cart')); openGoods(+gd.dataset.goods); return; }
+  if (e.target.closest('[data-open-cart]')) openCart();
+  if (e.target.closest('[data-open-favs]')) openCart(true);
+  const q = e.target.closest('[data-q]');
+  if (q) { const [id, d] = q.dataset.q.split(':').map(Number); SP.cart[id] = (SP.cart[id] || 0) + d; if (SP.cart[id] <= 0) delete SP.cart[id]; renderShop(); openCart(); }
+});
+$('#pd-fav').onclick = () => { const id = SP.cur.id; SP.favs.has(id) ? SP.favs.delete(id) : SP.favs.add(id); $('#pd-fav').textContent = SP.favs.has(id) ? '★ 已收藏' : '☆ 收藏'; renderShop(); toast(SP.favs.has(id) ? '已收藏' : '已取消收藏'); };
+$('#pd-cart').onclick = () => addCart(SP.cur.id);
+$('#pd-buy').onclick = () => toast('将跳转抖音小黄车下单 · 或联系客服阿平');
+$('#cart-go').onclick = () => toast('已复制商品清单，正在打开客服私信');
+
+/* 工具箱 · 配饰效果：主串材质 + 配饰 */
+const ACCS = ['马凳三通', '古格塔', '猛犸顶珠', '蜜蜡顶珠', '南红隔珠', '金饰隔珠', '银饰隔片', '背云', '流苏'];
+const AC_ITEMS = [
+  { cat:2, acc:'蜜蜡顶珠', t:'橄榄核 108 配蜜蜡顶珠', u:'木木', n:0, likes:212 },
+  { cat:1, acc:'金饰隔珠', t:'星月菩提配金饰福珠', u:'星月小白', n:4, likes:89 },
+  { cat:4, acc:'马凳三通', t:'小叶紫檀配马凳三通', u:'阿凯', n:1, likes:64 },
+  { cat:1, acc:'南红隔珠', t:'白玉星月配南红隔珠', u:'竹间', n:2, likes:51 },
+  { cat:2, acc:'古格塔', t:'橄榄核素珠配古格塔', u:'一叶', n:1, likes:37 },
+  { cat:1, acc:'流苏', t:'青皮星月配流苏', u:'老周', n:3, likes:29 },
+];
+const AC = { acc: '', cat: -1, q: '' };
+function renderAccessory() {
+  $('#ac-accs').innerHTML = ['', ...ACCS].map(a => `<button class="chip" data-ac="${a}" aria-selected="${a === AC.acc}">${a || '全部'}</button>`).join('');
+  $('#ac-cats').innerHTML = [-1, ...CATS.map((_, i) => i)].map(i => `<button class="chip" data-acat="${i}" aria-selected="${i === AC.cat}">${i < 0 ? '全部' : CATS[i].name}</button>`).join('');
+  const q = AC.q.trim();
+  const list = AC_ITEMS.filter(it => (!AC.acc || it.acc === AC.acc) && (AC.cat < 0 || it.cat === AC.cat) && (!q || (it.t + it.acc + CATS[it.cat].name + it.u).includes(q)));
+  $('#ac-grid').innerHTML = list.length ? list.map(it => `<div class="ac"><div class="ac-img">${bracelet(it.cat, it.n)}<span class="tg">${CATS[it.cat].name} + ${it.acc}</span></div>
+    <div class="ac-body"><b>${esc(it.t)}</b><span><i style="font-style:normal">@${esc(it.u)}</i><i style="font-style:normal">♡ ${it.likes}</i></span></div></div>`).join('')
+    : `<div class="empty" style="grid-column:1/-1"><b>还没有这种搭配</b>换个配饰或材质看看，也可以上传你的搭配</div>`;
+}
+$('#ac-accs').addEventListener('click', e => { const b = e.target.closest('[data-ac]'); if (b) { AC.acc = b.dataset.ac; renderAccessory(); } });
+$('#ac-cats').addEventListener('click', e => { const b = e.target.closest('[data-acat]'); if (b) { AC.cat = +b.dataset.acat; renderAccessory(); } });
+$('#ac-q').addEventListener('input', e => { AC.q = e.target.value; renderAccessory(); });
+
+/* 申请成为帮看老师：按品类答题认证 */
+const QUIZ = {
+  1: [['星月菩提是哪种植物的种子？', ['黄藤', '橄榄', '椰子', '菩提树'], 1],
+      ['星月菩提表面分布的黑色小点俗称什么？', ['星', '月', '眼', '线'], 1],
+      ['星月菩提中间凹下去的圆坑俗称什么？', ['星', '月', '眼', '纹'], 2],
+      ['新的星月菩提刚开始盘，一般建议怎么做？', ['先干盘一段时间', '马上抹油', '泡水', '暴晒'], 1]],
+  4: [['小叶紫檀表面金色的闪点俗称什么？', ['金星', '银星', '油线', '鬼脸'], 1],
+      ['小叶紫檀新料刚打磨出来，颜色一般怎样变化？', ['橙红慢慢转深紫红', '一直不变', '越盘越白', '越盘越绿'], 1]],
+  2: [['做橄榄核雕常用的是哪种橄榄的核？', ['乌榄', '白榄', '油橄榄', '青橄榄'], 1]],
+};
+const HC = { certs: new Set(), tried: new Set(), cat: null, answers: {}, result: null };
+function renderHelper() {
+  $('#hc-list').innerHTML = CATS.map((c, i) => {
+    const qs = QUIZ[i], done = HC.certs.has(i), tried = HC.tried.has(i);
+    const [label, cls, sub] = done ? ['已认证', 'done', '已通过认证'] : !qs ? ['敬请期待', 'off', '题目准备中'] : tried ? ['明天再来', 'off', '今天的次数用完了'] : ['去答题', '', `${qs.length} 道题 · 今天还能考 1 次`];
+    return `<button class="hc" data-hc="${i}"><div><b>${c.name}</b><small>${sub}</small></div><span class="${cls}">${label}</span></button>`;
+  }).join('');
+  setT('#me-certs', HC.certs.size ? [...HC.certs].map(i => `${CATS[i].name}大佬`).join('、') : '还没有，去答题认证');
+}
+const LETTERS = 'ABCD';
+function renderQuiz() {
+  const qs = QUIZ[HC.cat], r = HC.result;
+  const head = r ? `<div class="qz-res${r.pass ? ' ok' : ''}"><b>${r.score}</b><p>${r.pass ? `恭喜通过，你现在是「${CATS[HC.cat].name}大佬」` : '差一点，及格线是 80 分'}</p><small>答对 ${r.right} / ${qs.length} 题${r.pass ? ' · 可以去回答这个品类的悬赏求帮看了' : ' · 看看下面的答案，明天再来'}</small></div>`
+    : `<p style="font-size:12px;color:var(--ink-2);margin-bottom:14px">「${CATS[HC.cat].name}」认证 · 共 ${qs.length} 题 · 答对 80% 通过</p>`;
+  $('#qz-body').innerHTML = head + qs.map(([q, opts, ans], qi) => `<div class="qz"><div class="qz-t"><i>${qi + 1}</i>${q}</div>
+    ${opts.map((o, oi) => {
+      const cls = r ? (ans === oi + 1 ? ' right' : HC.answers[qi] === oi + 1 ? ' wrong' : '') : '';
+      return `<button class="opt${cls}" data-qo="${qi}:${oi + 1}" aria-pressed="${!r && HC.answers[qi] === oi + 1}"><em>${LETTERS[oi]}</em>${o}</button>`;
+    }).join('')}</div>`).join('');
+  const done = Object.keys(HC.answers).length;
+  $('#qz-go').textContent = r ? (r.pass ? '去看求帮看' : '返回') : `交卷（已答 ${done} / ${qs.length}）`;
+}
+document.addEventListener('click', e => { if (e.target.closest('[data-open-helper]')) { renderHelper(); openSub('helper'); } });
+$('#hc-list').addEventListener('click', e => {
+  const b = e.target.closest('[data-hc]'); if (!b) return;
+  const i = +b.dataset.hc;
+  if (HC.certs.has(i)) return toast(`你已经是「${CATS[i].name}」帮看老师了`);
+  if (!QUIZ[i]) return toast(`「${CATS[i].name}」的题目还在准备中`);
+  if (HC.tried.has(i)) return toast('今天的次数用完了，明天再来');
+  HC.cat = i; HC.answers = {}; HC.result = null;
+  renderQuiz(); openSub('quiz');
+});
+$('#qz-body').addEventListener('click', e => {
+  const b = e.target.closest('[data-qo]'); if (!b || HC.result) return;
+  const [qi, o] = b.dataset.qo.split(':').map(Number);
+  HC.answers[qi] = o; renderQuiz();
+});
+$('#qz-go').onclick = () => {
+  const qs = QUIZ[HC.cat];
+  if (HC.result) {
+    closeSub($('#quiz')); renderHelper();
+    if (HC.result.pass) { closeSub($('#helper')); go('advice'); }
+    return;
+  }
+  const done = Object.keys(HC.answers).length;
+  if (done < qs.length) return toast(`还有 ${qs.length - done} 道题没答`);
+  const right = qs.filter(([, , ans], qi) => HC.answers[qi] === ans).length;
+  const score = Math.round(right / qs.length * 100);
+  HC.result = { right, score, pass: score >= 80 };
+  HC.tried.add(HC.cat);
+  if (HC.result.pass) HC.certs.add(HC.cat);
+  renderQuiz(); renderHelper();
+  $('#quiz .sub-body').scrollTop = 0;
+};
+
 /* 工具箱 · 买串避坑 */
 function renderAdvice() {
   const c = CATS[S.adv];
@@ -1286,20 +1804,13 @@ $('#adv-chips').addEventListener('click', e => {
 
 /* 06 profile · 宝库：一串一格，和图鉴大赏是同一份数据 */
 const VAULT = [
-  { cat:1, t:'高密星月菩提', p:12 }, { cat:4, t:'小叶紫檀 · 满金星', p:8 }, { cat:2, t:'橄榄核 · 108 子', p:6 },
-  { cat:1, t:'星月菩提 · 白玉', p:5 }, { cat:1, t:'星月菩提 · 青皮', p:3 },
+  { cat:1, t:'高密星月菩提', p:12, d:128 }, { cat:4, t:'小叶紫檀 · 满金星', p:8, d:96 }, { cat:2, t:'橄榄核 · 108 子', p:6, d:365 },
+  { cat:1, t:'星月菩提 · 白玉', p:5, d:42 }, { cat:1, t:'星月菩提 · 青皮', p:3, d:21 }, { cat:4, t:'小叶紫檀 · 老料', p:4, d:210 },
 ];
 function renderVault() {
-  $('#vault').innerHTML = VAULT.slice(0, 5).map((v, i) => `<button class="vcell" data-todo="「${esc(v.t)}」的图集 · 共 ${v.p} 张">
-    ${v.img ? `<img src="${v.img}" alt="">` : bracelet(v.cat, i, 0)}${v.p > 1 ? `<span class="vp">${v.p}P</span>` : ''}
-    <span class="vn">${esc(v.t)}</span>${v.status === 'pending' ? '<span class="mod">审核中</span>' : ''}</button>`).join('')
-    + '<button class="vcell vadd" data-open-upload><b>+</b>收进宝库</button>';
-}
-
-/* 藏宝阁 · 积分兑 */
-function renderTreasure() {
-  $('#tr-grid').innerHTML = GIFTS.slice(0, 4).map(g => `<button class="gift" data-open-mall style="padding:0;text-align:left;cursor:pointer"><div class="ph">${giftPic(g)}</div><div class="gift-body">
-    <div class="gift-name">${g.name}</div><div class="gift-row" style="margin-bottom:0"><span class="gift-cost">${fmt(g.cost)}<small>积分</small></span><span class="gift-stock">剩 ${g.stock} 件</span></div></div></button>`).join('');
+  $('#vault').innerHTML = VAULT.slice(0, 6).map((v, i) => `<button class="vcell" data-todo="「${esc(v.t)}」的图集 · 共 ${v.p} 张 · 盘玩第 ${v.d || 1} 天">
+    ${v.img ? `<img src="${v.img}" alt="">` : bracelet(v.cat, i, 0)}<span class="vp">Day${v.d || 1}</span>${v.status === 'pending' ? '<span class="mod">审核中</span>' : ''}</button>`).join('');
+  setT('#vault-n', VAULT.length);
 }
 
 /* points mall */
@@ -1339,7 +1850,7 @@ $('#mall-grid').addEventListener('click', e => {
   S.confirmGift = null; S.points -= g.cost; g.stock--;
   S.log.unshift({ t: `兑换 ${g.name}`, p: -g.cost, when: '刚刚' });
   if (g.kind === 'makeup') S.cards++;
-  renderPoints(); renderMall(); renderTreasure(); renderCheckin();
+  renderPoints(); renderMall(); renderCheckin();
   toast(g.kind === 'coupon' ? '兑换成功 · 客服会在「兑换订单」里发券码' : g.kind === 'makeup' ? `兑换成功 · 现在有 ${S.cards} 张补签卡` : '兑换成功 · 请填写收货地址');
 });
 
@@ -1399,7 +1910,7 @@ $('#up-go').onclick = () => {
     POSTS.unshift(post);
   }
   S.published++;
-  $('#st-items').textContent = pad2(6 + S.published);
+  setT('#st-items', pad2(6 + S.published));
   $('#up-name').value = ''; $('#up-desc').value = ''; S.photos = presetPhotos();
   closeSub($('#upload'));
   S.coll = cat; S.q = ''; $('#coll-q').value = '';
@@ -1414,7 +1925,7 @@ $('#up-go').onclick = () => {
   }, 2600);
 };
 
-renderPick(); restartAuto(); showNotice(); renderContest(); renderCheckin(); renderFeed(); renderColl(); renderKnow(); renderAdvice(); renderAsks(); renderVault(); renderTreasure(); renderPoints(); go('home');
+renderPick(); restartAuto(); showNotice(); renderContest(); renderCheckin(); renderFeed(); renderColl(); renderKnow(); renderAdvice(); renderAsks(); renderAccessory(); renderHelper(); renderVault(); renderShop(); renderPoints(); go('home');
 </script>
 
 </body>

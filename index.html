@@ -708,40 +708,50 @@ textarea.field{height:96px;resize:none}
 .sp-filter button{flex-shrink:0;background:none;border:none;color:var(--ink-2);font:400 12px/1 var(--ff);padding:3px 0;cursor:pointer}
 .sp-filter button[aria-selected="true"]{color:var(--gold);font-weight:900}
 .sp-filter .sep{width:1px;height:12px;background:var(--ink-3);flex-shrink:0}
-.sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.sp-card{display:flex;flex-direction:column;min-width:0;border-radius:12px;overflow:hidden;border:1px solid var(--line3);background:var(--card2);cursor:pointer}
-.sp-card .im{position:relative;aspect-ratio:1;background:var(--well)}
-.sp-card .im img,.sp-card .im svg{display:block;width:100%;height:100%;object-fit:cover}
-.sp-card .bd{padding:9px 10px 10px}
-.sp-card .bd{flex:1;display:flex;flex-direction:column}
-.sp-card b{display:block;font:900 13px/1.35 var(--ff);height:2.7em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.sp-card .sp-spec{font-size:11px;color:var(--ink-2);margin-top:4px}
-.sp-card .sp-row{display:flex;align-items:baseline;gap:6px;margin-top:auto;padding-top:8px}
-.sp-card .sp-price{font:400 19px/1 var(--ff-en);color:var(--gold)}
-.sp-card .sp-price small{font-size:12px;margin-right:1px}
-.sp-card .sp-sold{font-size:10.5px;color:var(--ink-3)}
-.sp-card .sp-add{margin-left:auto;height:22px;padding:0 8px;border-radius:6px;border:none;background:var(--gold-grad);color:var(--gold-ink);font:900 11px/1 var(--ff);cursor:pointer}
-.pd-img{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--well);margin-bottom:14px}
-.pd-img img,.pd-img svg{width:100%;height:100%;object-fit:cover}
-.pd-price{font:400 30px/1 var(--ff-en);color:var(--gold)}
-.pd-price small{font-size:16px}
-.pd-name{font:900 19px/1.35 var(--ff-serif);margin:10px 0 6px}
-.pd-meta{font-size:12px;color:var(--ink-2);margin-bottom:14px}
-.pd-box{padding:12px 14px;border-radius:12px;border:1px solid var(--line3);background:var(--card2);font-size:13px;line-height:1.7;color:var(--ink-2);margin-bottom:10px}
-.pd-box b{color:var(--ink)}
-.pd-foot{display:flex;gap:8px}
-.pd-foot .btn-ghost{flex-shrink:0;height:46px;padding:0 16px}
-.pd-foot .btn-gold{flex:1;height:46px}
-.cart-row{display:flex;align-items:center;gap:10px;padding:10px;margin-bottom:8px;border-radius:12px;border:1px solid var(--line3);background:var(--card2)}
-.cart-row .im{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--well)}
-.cart-row .im img,.cart-row .im svg{width:100%;height:100%;object-fit:cover}
-.cart-row .in{flex:1;min-width:0}
-.cart-row .in b{display:block;font:900 13px/1.3 var(--ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cart-row .in span{display:block;font:400 15px/1 var(--ff-en);color:var(--gold);margin-top:8px}
-.qty{display:flex;align-items:center;gap:8px}
-.qty button{width:24px;height:24px;border-radius:50%;border:1px solid var(--line-2);background:none;color:var(--ink);cursor:pointer;font-size:14px;line-height:1}
-.cart-sum{display:flex;align-items:baseline;justify-content:space-between;margin:14px 0 6px;font-size:13px}
-.cart-sum b{font:400 24px/1 var(--ff-en);color:var(--gold)}
+.fb-intro{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:10px 12px;border-radius:12px;border:1px solid rgba(201,161,101,.35);background:rgba(201,161,101,.06);font-size:12px;line-height:1.5;color:var(--ink-2)}
+.fb-intro b{color:var(--gold);font-weight:900}
+.fb-card{display:block;margin-bottom:10px;padding:10px;border-radius:12px;border:1px solid var(--line3);background:var(--card2);cursor:pointer}
+.fb-hd{display:flex;align-items:center;gap:8px;margin-bottom:9px;min-width:0}
+.fb-hd .p2-av{width:28px;height:28px;font-size:12px}
+.fb-hd b{font:900 13px/1 var(--ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fb-hd small{font:400 11px/1 var(--ff-en);color:var(--ink-3);white-space:nowrap}
+.fb-hd .fb-day{margin-left:auto;flex-shrink:0;font-size:11px;color:var(--gold);white-space:nowrap}
+.fb-st{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;border-radius:8px;overflow:hidden}
+.fb-st figure,.fb-big figure{position:relative;margin:0;aspect-ratio:1;background:var(--well);overflow:hidden}
+.fb-st img,.fb-st svg,.fb-big img,.fb-big svg{display:block;width:100%;height:100%;object-fit:cover}
+.fb-st figcaption,.fb-big figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 7px 6px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;font:900 11px/1 var(--ff);letter-spacing:.06em}
+.fb-big figcaption{padding:28px 12px 10px;font-size:14px}
+.fb-big figcaption small{float:right;font:400 11px/14px var(--ff-en);color:rgba(255,255,255,.7);letter-spacing:0}
+/* 原型示意：同一张实拍图逐级加深，模拟盘出包浆；正式版是盘友自己传的图 */
+.st1 img,.st1 svg{filter:sepia(.2) saturate(1.2) brightness(.88) contrast(1.06)}
+.st2 img,.st2 svg{filter:sepia(.4) saturate(1.5) brightness(.72) contrast(1.16)}
+figure.wait{display:grid;place-items:center;align-content:center;gap:6px;padding:6px;border:1px dashed var(--line-2);background:none;color:var(--ink-3);font-size:10.5px;text-align:center}
+figure.wait b{color:var(--ink-2);font:900 12px/1 var(--ff)}
+.fb-bd{display:flex;align-items:flex-end;gap:10px;padding:9px 2px 0}
+.fb-bd .tx{flex:1;min-width:0}
+.fb-bd b{display:block;font:900 13px/1.35 var(--ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fb-bd .tx span{display:block;font-size:11px;color:var(--ink-2);margin-top:4px}
+.fb-like{display:flex;align-items:center;gap:4px;flex-shrink:0;background:none;border:none;color:var(--ink-2);font:400 12px/1 var(--ff);padding:4px 0;cursor:pointer}
+.fb-like svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6}
+.fb-like[aria-pressed="true"]{color:var(--gold)}
+.fb-like[aria-pressed="true"] svg{fill:currentColor}
+.fb-user{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.fb-user b{font:900 14px/1 var(--ff)}
+.fb-user small{font:400 11px/1 var(--ff-en);color:var(--ink-3)}
+.fb-user time{margin-left:auto;font-size:12px;color:var(--gold)}
+.fb-name{font:900 19px/1.35 var(--ff-serif);margin-bottom:6px}
+.fb-meta{font-size:12px;color:var(--ink-2);margin-bottom:12px}
+.fb-text{font-size:14px;line-height:1.7;margin-bottom:16px;overflow-wrap:anywhere}
+.fb-big{display:grid;gap:8px}
+.fb-big figure{border-radius:12px}
+.fb-big figure.wait{aspect-ratio:3/1;font-size:12px}
+.fb-foot{display:flex;gap:8px}
+.fb-foot .btn-ghost{flex-shrink:0;height:46px;padding:0 18px}
+.fb-foot .btn-gold{flex:1;height:46px}
+.fn-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.fn-slots .ph-tile{aspect-ratio:1}
+.fn-slots .ph-tile .cover{background:rgba(0,0,0,.7);color:#fff}
+.fn-slots .ph-add small{font-size:10px;color:var(--ink-3);letter-spacing:0}
 
 /* 工具箱 */
 .search2{display:flex;align-items:center;gap:8px;width:100%;height:38px;padding:0 14px;margin-bottom:12px;border-radius:999px;border:1px solid var(--line3);background:rgba(255,255,255,.05);color:var(--ink-3);font:400 13px/1 var(--ff);text-align:left;cursor:pointer}
@@ -882,12 +892,13 @@ textarea.field{height:96px;resize:none}
 
   <!-- 03 藏宝阁 -->
   <main class="page" id="page-treasure" hidden>
-    <header class="ph2"><h1 class="t1">藏宝阁</h1><button class="ico-btn" data-open-cart aria-label="购物车" style="margin-left:auto"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 001.5 1.1h8.6a1.5 1.5 0 001.5-1.1L21 7H6"/></svg><span class="dotn" id="cart-n" hidden>0</span></button><div class="capsule" style="margin-left:0" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
-    <div class="sp-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="sp-q" type="search" placeholder="搜索：星月/老型/顶珠…" autocomplete="off"><button aria-label="搜索" id="sp-go"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button></div>
+    <header class="ph2"><h1 class="t1">藏宝阁</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></header>
+    <div class="sp-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="sp-q" type="search" placeholder="搜索：星月/老型/盘友 ID…" autocomplete="off"><button aria-label="搜索" id="sp-go"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button></div>
     <div class="sp-cat1" id="sp-cat1" role="tablist"></div>
     <div class="sp-cat2" id="sp-cat2"></div>
     <div class="sp-filter" id="sp-filter"></div>
-    <div class="sp-grid" id="sp-grid"></div>
+    <div class="fb-intro"><span>同一串手串 <b>第一天 → 一个月 → 一年</b> 的对比返图，看看盘出来是什么样</span></div>
+    <div id="fb-list"></div>
   </main>
 
   <!-- 04 工具箱 -->
@@ -976,6 +987,9 @@ textarea.field{height:96px;resize:none}
 
   <div class="fabs" data-for="community" hidden>
     <button class="fab" data-open-upload aria-label="发文玩"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+  </div>
+  <div class="fabs" data-for="treasure" hidden>
+    <button class="fab" data-fb-new><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 012-2h2.5l1.5-2h6l1.5 2H19a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg>上传</button>
   </div>
   <div class="fabs" data-for="collection" hidden>
     <button class="fab mini" aria-label="分享" data-todo="将调起抖音分享"><svg viewBox="0 0 24 24"><path d="M4 13v6a2 2 0 002 2h12a2 2 0 002-2v-6M16 7l-4-4-4 4M12 3v13"/></svg></button>
@@ -1105,18 +1119,35 @@ textarea.field{height:96px;resize:none}
     <div class="sub-foot"><button class="btn-gold" id="qz-go"></button></div>
   </section>
 
-  <!-- 商品详情 -->
-  <section class="sub" id="prod" aria-label="商品详情" aria-hidden="true">
-    <div class="sub-nav"><button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><h1>商品详情</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></div>
-    <div class="sub-body" id="prod-body"></div>
-    <div class="sub-foot pd-foot"><button class="btn-ghost" id="pd-fav">☆ 收藏</button><button class="btn-ghost" id="pd-cart">加购</button><button class="btn-gold" id="pd-buy">立即购买</button></div>
+  <!-- 返图详情 -->
+  <section class="sub" id="fb" aria-label="返图详情" aria-hidden="true">
+    <div class="sub-nav"><button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><h1>返图详情</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></div>
+    <div class="sub-body" id="fb-body"></div>
+    <div class="sub-foot fb-foot"><button class="btn-ghost" id="fb-fav">☆ 收藏</button><button class="btn-gold" id="fb-like"></button></div>
   </section>
 
-  <!-- 购物车 / 收藏 -->
-  <section class="sub" id="cart" aria-label="购物车" aria-hidden="true">
-    <div class="sub-nav"><button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><h1 id="cart-title">购物车</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></div>
-    <div class="sub-body" id="cart-body"></div>
-    <div class="sub-foot" id="cart-foot"><button class="btn-gold" id="cart-go">联系客服下单</button></div>
+  <!-- 上传返图 -->
+  <section class="sub" id="fbnew" aria-label="上传返图" aria-hidden="true">
+    <div class="sub-nav"><button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><h1>上传返图</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></div>
+    <div class="sub-body">
+      <div class="step"><span class="n">01</span><h2>哪一串</h2></div>
+      <div class="chips sm" id="fn-c2" style="margin-bottom:10px"></div>
+      <div class="chips sm" id="fn-shape" style="margin-bottom:12px"></div>
+      <input class="field" id="fn-name" maxlength="20" placeholder="给这串起个名，比如：高密白玉 108" autocomplete="off">
+      <div class="step" style="margin-top:18px"><span class="n">02</span><h2>三个阶段的图</h2></div>
+      <div class="fn-slots" id="fn-photos"></div>
+      <p class="an-hint">先传「第一天」就能发布。满一个月、满一年时提醒你回来补图；同一个角度、同样的光线，对比最明显。</p>
+      <div class="step" style="margin-top:18px"><span class="n">03</span><h2>盘玩心得</h2></div>
+      <textarea class="field" id="fn-text" maxlength="300" placeholder="怎么盘的、多久上手、有没有开裂变色……（选填）"></textarea>
+      <div class="field-err" id="fn-err" role="alert" hidden></div>
+    </div>
+    <div class="sub-foot"><button class="btn-gold" id="fn-go">发布返图</button></div>
+  </section>
+
+  <!-- 我的收藏 -->
+  <section class="sub" id="favs" aria-label="我的收藏" aria-hidden="true">
+    <div class="sub-nav"><button class="back" data-close-sub aria-label="返回"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><h1>我的收藏</h1><div class="capsule" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div></div>
+    <div class="sub-body" id="favs-body"></div>
   </section>
 
   <!-- 积分商城 -->
@@ -1612,7 +1643,7 @@ $('#an-go').onclick = () => {
   }, 3000);
 };
 
-/* 藏宝阁 · 甄选商城：一级大类 → 二级品种 → 器型，搜索、排序、收藏、购物车 */
+/* 藏宝阁 · 盘玩返图：同一串第一天 / 一个月 / 一年的对比图；一级大类 → 二级品种 → 器型筛选、搜索、点赞、收藏 */
 const SHOP_CATS = [
   { name: '树籽类', subs: ['星月菩提', '橄榄核', '金刚菩提', '百香籽', '紫金鼠', '核尖', '猴头'] },
   { name: '木串类', subs: ['小叶紫檀', '沉香', '黄花梨', '崖柏'] },
@@ -1621,81 +1652,125 @@ const SHOP_CATS = [
   { name: '配饰类', subs: ['三通', '顶珠', '隔片'] },
 ];
 const SHAPES = ['老型', '道珠', '圆珠', '直切', '原桩'];
-const GOODS = [
-  { id: 1, c1: 0, c2: '星月菩提', shape: '圆珠', name: '星月菩提 · 高密白玉', spec: '高密 · 108 颗', price: 168, sold: 236, cat: 1, n: 1, h: 1.25, date: 6 },
-  { id: 2, c1: 1, c2: '小叶紫檀', shape: '圆珠', name: '小叶紫檀 · 满金星', spec: '老料 2.0 · 15 颗', price: 398, sold: 128, cat: 4, n: 0, h: 1, date: 3 },
-  { id: 3, c1: 0, c2: '橄榄核', shape: '老型', name: '橄榄核 108 · 配蜜蜡顶珠', spec: '108 颗', price: 268, sold: 512, cat: 2, n: 0, h: 1, date: 5 },
-  { id: 4, c1: 0, c2: '星月菩提', shape: '道珠', name: '星月菩提 · 青皮道珠', spec: '青皮 · 21 颗', price: 128, sold: 89, cat: 1, n: 0, h: 1.3, date: 1 },
-  { id: 5, c1: 1, c2: '小叶紫檀', shape: '直切', name: '小叶紫檀 · 老料直切', spec: '2.0 · 18 颗', price: 680, sold: 46, cat: 4, n: 1, h: 1.15, date: 2 },
-  { id: 6, c1: 0, c2: '橄榄核', shape: '圆珠', name: '橄榄核 · 素珠手串', spec: '18 颗', price: 198, sold: 301, cat: 2, n: 1, h: 1.2, date: 4 },
-  { id: 7, c1: 0, c2: '星月菩提', shape: '老型', name: '星月菩提 · 老型桶珠', spec: '108 颗', price: 158, sold: 172, cat: 1, n: 3, h: 1, date: 7 },
+const STAGES = [{ d: 0, t: '第一天' }, { d: 30, t: '一个月' }, { d: 365, t: '一年' }];
+/* days：盘了多少天，决定已经有几张阶段图；date 越大越新 */
+const FB = [
+  { id: 1, user: '木木', uid: 10086, c1: 0, c2: '星月菩提', shape: '圆珠', name: '星月菩提 · 高密白玉', spec: '高密 · 108 颗', cat: 1, n: 1, days: 412, likes: 236, date: 6, text: '前一个月只戴不搓，等表面起了一层油润再上手。一年下来白玉底转成淡黄，星点更清楚了。' },
+  { id: 2, user: '阿凯', uid: 20417, c1: 1, c2: '小叶紫檀', shape: '圆珠', name: '小叶紫檀 · 满金星', spec: '老料 2.0 · 15 颗', cat: 4, n: 0, days: 388, likes: 128, date: 3, text: '紫檀别急着上手，先用干净手套擦，三个月后颜色明显变深，金星也亮起来了。' },
+  { id: 3, user: '一叶', uid: 31552, c1: 0, c2: '橄榄核', shape: '老型', name: '橄榄核 108 · 配蜜蜡顶珠', spec: '108 颗', cat: 2, n: 0, days: 96, likes: 512, date: 5, text: '刷子先刷了两周，一个月开始挂红。一年的图到时候回来补。' },
+  { id: 4, user: '星月小白', uid: 40233, c1: 0, c2: '星月菩提', shape: '道珠', name: '星月菩提 · 青皮道珠', spec: '青皮 · 21 颗', cat: 1, n: 0, days: 12, likes: 89, date: 7, text: '新手第一串，先把第一天的图存个档，大家帮看看底子怎么样。' },
+  { id: 5, user: '老周', uid: 10021, c1: 1, c2: '小叶紫檀', shape: '直切', name: '小叶紫檀 · 老料直切', spec: '2.0 · 18 颗', cat: 4, n: 1, days: 731, likes: 46, date: 1, text: '盘了两年，直切的棱角还在，包浆已经很厚，像一层玻璃壳。' },
+  { id: 6, user: '竹间', uid: 52790, c1: 0, c2: '橄榄核', shape: '圆珠', name: '橄榄核 · 素珠手串', spec: '18 颗', cat: 2, n: 1, days: 400, likes: 301, date: 4, text: '每天睡前盘二十分钟，没用任何油，全靠手盘。' },
+  { id: 7, user: '木木', uid: 10086, c1: 0, c2: '星月菩提', shape: '老型', name: '星月菩提 · 老型桶珠', spec: '108 颗', cat: 1, n: 3, days: 45, likes: 172, date: 2, text: '老型桶珠上手快，一个多月已经开始泛黄了。' },
 ];
-const SP = { c1: -1, c2: '', shape: '', sort: 'all', q: '', cart: {}, favs: new Set(), cur: null };
-const yuan = n => `<small>¥</small>${n}`;
-function renderShop() {
-  $('#sp-cat1').innerHTML = [-1, ...SHOP_CATS.map((_, i) => i)].map(i => `<button role="tab" data-c1="${i}" aria-selected="${i === SP.c1}">${i < 0 ? '全部' : SHOP_CATS[i].name}</button>`).join('');
-  const subs = SP.c1 < 0 ? SHOP_CATS.flatMap(c => c.subs).slice(0, 10) : SHOP_CATS[SP.c1].subs;
-  $('#sp-cat2').innerHTML = subs.map(n => `<button data-c2="${n}" aria-selected="${n === SP.c2}">${n}</button>`).join('');
-  $('#sp-filter').innerHTML = `器型：${['', ...SHAPES].map(n => `<button data-shape="${n}" aria-selected="${n === SP.shape}">${n || '全部'}</button>`).join('')}<span class="sep"></span>`
-    + [['all', '综合'], ['price', '价格'], ['new', '最新']].map(([k, l]) => `<button data-sort="${k}" aria-selected="${k === SP.sort}">${l}${k === 'price' ? '↑' : ''}</button>`).join('');
-  const q = SP.q.trim();
-  let list = GOODS.filter(g => (SP.c1 < 0 || g.c1 === SP.c1) && (!SP.c2 || g.c2 === SP.c2) && (!SP.shape || g.shape === SP.shape) && (!q || (g.name + g.c2 + g.shape + g.spec).includes(q)));
-  if (SP.sort === 'price') list = [...list].sort((a, b) => a.price - b.price);
-  else if (SP.sort === 'new') list = [...list].sort((a, b) => b.date - a.date);
-  else list = [...list].sort((a, b) => b.sold - a.sold);
-  $('#sp-grid').innerHTML = list.length ? list.map(g => `<div class="sp-card" data-goods="${g.id}">
-    <div class="im">${bracelet(g.cat, g.n)}</div>
-    <div class="bd"><b>${g.name}</b><div class="sp-spec">${g.shape} · ${g.spec}</div>
-    <div class="sp-row"><span class="sp-price">${yuan(g.price)}</span><span class="sp-sold">已售 ${g.sold}</span><button class="sp-add" data-add="${g.id}">加购</button></div></div></div>`).join('')
-    : '<div class="empty" style="grid-column:1/-1">没有找到符合条件的商品<br>换个分类或关键词试试</div>';
-  const n = Object.values(SP.cart).reduce((a, b) => a + b, 0);
-  $('#cart-n').hidden = !n; $('#cart-n').textContent = n;
-  setT('#fav-n', SP.favs.size);
+const ME = { user: '木木', uid: 10086 };
+const FBS = { c1: -1, c2: '', shape: '', sort: 'hot', q: '', liked: new Set(), favs: new Set(), cur: null };
+const reached = f => STAGES.filter(s => f.days >= s.d).length;
+const ymd = d => `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+const stageDate = (f, s) => { const d = new Date(); d.setDate(d.getDate() - f.days + s.d); return ymd(d); };
+const fbPic = f => f.img ? `<img src="${f.img}" alt="">` : bracelet(f.cat, f.n);
+const fbLikes = f => f.likes + (FBS.liked.has(f.id) ? 1 : 0);
+function fbCard(f) {
+  const r = reached(f);
+  return `<article class="fb-card" data-fb="${f.id}">
+    <div class="fb-hd"><div class="p2-av">${esc(f.user[0])}</div><b>${esc(f.user)}</b><small>ID ${f.uid}</small><span class="fb-day">盘玩第 ${f.days + 1} 天</span></div>
+    <div class="fb-st">${STAGES.map((s, k) => k < r ? `<figure class="st${k}">${fbPic(f)}<figcaption>${s.t}</figcaption></figure>`
+      : `<figure class="wait"><b>${s.t}</b>还差 ${s.d - f.days} 天</figure>`).join('')}</div>
+    <div class="fb-bd"><div class="tx"><b>${esc(f.name)}</b><span>${f.shape} · ${esc(f.spec)}</span></div>
+    <button class="fb-like" data-fblike="${f.id}" aria-pressed="${FBS.liked.has(f.id)}" aria-label="点赞">${HEART_SVG}${fbLikes(f)}</button></div>
+  </article>`;
 }
-function addCart(id) { SP.cart[id] = (SP.cart[id] || 0) + 1; renderShop(); toast('已加入购物车'); }
-function openGoods(id) {
-  const g = GOODS.find(x => x.id === id); SP.cur = g;
-  $('#prod-body').innerHTML = `<div class="pd-img">${bracelet(g.cat, g.n)}</div>
-    <div style="display:flex;align-items:baseline;gap:10px"><span class="pd-price">${yuan(g.price)}</span><span class="sp-sold">已售 ${g.sold}</span></div>
-    <h2 class="pd-name">${g.name}</h2>
-    <div class="pd-meta">${SHOP_CATS[g.c1].name} · ${g.c2} · ${g.shape} · ${g.spec}</div>
-    <div class="pd-box"><b>阿平严选</b> · 运营方选品，实物拍摄。<br>付款：在抖音小黄车下单，或联系客服阿平下单。<br>积分可以兑换「小黄车抵扣券」，下单时抵扣。</div>
-    <div class="pd-box">文玩为非标品，图片与实物可能有细微差异，下单前可以先问客服要视频。</div>`;
-  $('#pd-fav').textContent = SP.favs.has(id) ? '★ 已收藏' : '☆ 收藏';
-  openSub('prod');
+function renderFb() {
+  $('#sp-cat1').innerHTML = [-1, ...SHOP_CATS.map((_, i) => i)].map(i => `<button role="tab" data-c1="${i}" aria-selected="${i === FBS.c1}">${i < 0 ? '全部' : SHOP_CATS[i].name}</button>`).join('');
+  const subs = FBS.c1 < 0 ? SHOP_CATS.flatMap(c => c.subs).slice(0, 10) : SHOP_CATS[FBS.c1].subs;
+  $('#sp-cat2').innerHTML = subs.map(n => `<button data-c2="${n}" aria-selected="${n === FBS.c2}">${n}</button>`).join('');
+  $('#sp-filter').innerHTML = `器型：${['', ...SHAPES].map(n => `<button data-shape="${n}" aria-selected="${n === FBS.shape}">${n || '全部'}</button>`).join('')}<span class="sep"></span>`
+    + [['hot', '最热'], ['new', '最新'], ['year', '满一年']].map(([k, l]) => `<button data-sort="${k}" aria-selected="${k === FBS.sort}">${l}</button>`).join('');
+  const q = FBS.q.trim();
+  let list = FB.filter(f => (FBS.c1 < 0 || f.c1 === FBS.c1) && (!FBS.c2 || f.c2 === FBS.c2) && (!FBS.shape || f.shape === FBS.shape)
+    && (FBS.sort !== 'year' || f.days >= 365) && (!q || (f.name + f.c2 + f.shape + f.spec + f.user + f.uid).includes(q)));
+  list = [...list].sort(FBS.sort === 'new' ? (a, b) => b.date - a.date : (a, b) => fbLikes(b) - fbLikes(a));
+  $('#fb-list').innerHTML = list.length ? list.map(fbCard).join('')
+    : '<div class="empty">没有找到符合条件的返图<br>换个分类或关键词试试</div>';
+  setT('#fav-n', FBS.favs.size);
 }
-function openCart(favs = false) {
-  const rows = favs ? [...SP.favs].map(id => [GOODS.find(g => g.id === id), 1]) : Object.entries(SP.cart).map(([id, q]) => [GOODS.find(g => g.id === +id), q]);
-  $('#cart-title').textContent = favs ? '我的收藏' : '购物车';
-  const total = rows.reduce((a, [g, q]) => a + g.price * q, 0);
-  $('#cart-body').innerHTML = rows.length ? rows.map(([g, q]) => `<div class="cart-row"><div class="im">${bracelet(g.cat, g.n)}</div>
-    <div class="in"><b>${g.name}</b><span>¥${g.price}</span></div>
-    ${favs ? `<button class="sp-add" data-goods="${g.id}">查看</button>` : `<div class="qty"><button data-q="${g.id}:-1">−</button>${q}<button data-q="${g.id}:1">+</button></div>`}</div>`).join('')
-    + (favs ? '' : `<div class="cart-sum"><span>合计 ${rows.reduce((a, [, q]) => a + q, 0)} 件</span><b>¥${total}</b></div><p class="adv-note">小程序里暂不直接付款：点下面的按钮会复制商品清单并打开客服私信，客服确认后发小黄车链接给你付款。积分兑换的抵扣券在小黄车下单时使用。</p>`)
-    : `<div class="empty"><b>${favs ? '还没有收藏' : '购物车是空的'}</b>去藏宝阁逛逛</div>`;
-  $('#cart-foot').hidden = favs || !rows.length;
-  openSub('cart');
+function openFb(id) {
+  const f = FB.find(x => x.id === id), r = reached(f), mine = f.uid === ME.uid; FBS.cur = f;
+  $('#fb-body').innerHTML = `<div class="fb-user"><div class="p2-av">${esc(f.user[0])}</div><b>${esc(f.user)}</b><small>ID ${f.uid}</small><time>盘玩第 ${f.days + 1} 天</time></div>
+    <h2 class="fb-name">${esc(f.name)}</h2>
+    <div class="fb-meta">${SHOP_CATS[f.c1].name} · ${f.c2} · ${f.shape} · ${esc(f.spec)}</div>
+    ${f.text ? `<p class="fb-text">${esc(f.text)}</p>` : ''}
+    <div class="fb-big">${STAGES.map((s, k) => k < r ? `<figure class="st${k}">${fbPic(f)}<figcaption>${s.t}<small>${stageDate(f, s)}</small></figcaption></figure>`
+      : `<figure class="wait"><b>${s.t}</b>还差 ${s.d - f.days} 天${mine ? ' · 到时提醒你回来补图' : ''}</figure>`).join('')}</div>
+    <p class="adv-note">返图由盘友自己上传，颜色受光线和拍摄设备影响，仅供参考。</p>`;
+  fbFoot();
+  openSub('fb');
 }
-$('#sp-cat1').addEventListener('click', e => { const b = e.target.closest('[data-c1]'); if (b) { SP.c1 = +b.dataset.c1; SP.c2 = ''; renderShop(); } });
-$('#sp-cat2').addEventListener('click', e => { const b = e.target.closest('[data-c2]'); if (b) { SP.c2 = SP.c2 === b.dataset.c2 ? '' : b.dataset.c2; renderShop(); } });
+function fbFoot() {
+  const f = FBS.cur;
+  $('#fb-fav').textContent = FBS.favs.has(f.id) ? '★ 已收藏' : '☆ 收藏';
+  $('#fb-like').textContent = `${FBS.liked.has(f.id) ? '♥ 已赞' : '♡ 点赞'} · ${fbLikes(f)}`;
+}
+function likeFb(id) {
+  if (FBS.liked.has(id)) FBS.liked.delete(id);
+  else { FBS.liked.add(id); const got = earn('like'); if (got) toast(`点赞成功${plus(got)}`); }
+  renderFb();
+  if (FBS.cur && FBS.cur.id === id) fbFoot();
+}
+function openFavs() {
+  const rows = FB.filter(f => FBS.favs.has(f.id));
+  $('#favs-body').innerHTML = rows.length ? rows.map(fbCard).join('') : '<div class="empty"><b>还没有收藏</b>去藏宝阁看看盘友的返图</div>';
+  openSub('favs');
+}
+$('#sp-cat1').addEventListener('click', e => { const b = e.target.closest('[data-c1]'); if (b) { FBS.c1 = +b.dataset.c1; FBS.c2 = ''; renderFb(); } });
+$('#sp-cat2').addEventListener('click', e => { const b = e.target.closest('[data-c2]'); if (b) { FBS.c2 = FBS.c2 === b.dataset.c2 ? '' : b.dataset.c2; renderFb(); } });
 $('#sp-filter').addEventListener('click', e => {
-  const sh = e.target.closest('[data-shape]'); if (sh) { SP.shape = sh.dataset.shape; renderShop(); }
-  const so = e.target.closest('[data-sort]'); if (so) { SP.sort = so.dataset.sort; renderShop(); }
+  const sh = e.target.closest('[data-shape]'); if (sh) { FBS.shape = sh.dataset.shape; renderFb(); }
+  const so = e.target.closest('[data-sort]'); if (so) { FBS.sort = so.dataset.sort; renderFb(); }
 });
-$('#sp-q').addEventListener('input', e => { SP.q = e.target.value; renderShop(); });
-$('#sp-go').onclick = () => renderShop();
+$('#sp-q').addEventListener('input', e => { FBS.q = e.target.value; renderFb(); });
+$('#sp-go').onclick = () => renderFb();
 document.addEventListener('click', e => {
-  const add = e.target.closest('[data-add]'); if (add) { addCart(+add.dataset.add); return; }
-  const gd = e.target.closest('[data-goods]'); if (gd) { if ($('#cart').classList.contains('open')) closeSub($('#cart')); openGoods(+gd.dataset.goods); return; }
-  if (e.target.closest('[data-open-cart]')) openCart();
-  if (e.target.closest('[data-open-favs]')) openCart(true);
-  const q = e.target.closest('[data-q]');
-  if (q) { const [id, d] = q.dataset.q.split(':').map(Number); SP.cart[id] = (SP.cart[id] || 0) + d; if (SP.cart[id] <= 0) delete SP.cart[id]; renderShop(); openCart(); }
+  const lk = e.target.closest('[data-fblike]'); if (lk) { likeFb(+lk.dataset.fblike); if ($('#favs').classList.contains('open')) openFavs(); return; }
+  const c = e.target.closest('[data-fb]'); if (c) { openFb(+c.dataset.fb); return; }
+  if (e.target.closest('[data-open-favs]')) openFavs();
+  if (e.target.closest('[data-fb-new]')) openFbNew();
 });
-$('#pd-fav').onclick = () => { const id = SP.cur.id; SP.favs.has(id) ? SP.favs.delete(id) : SP.favs.add(id); $('#pd-fav').textContent = SP.favs.has(id) ? '★ 已收藏' : '☆ 收藏'; renderShop(); toast(SP.favs.has(id) ? '已收藏' : '已取消收藏'); };
-$('#pd-cart').onclick = () => addCart(SP.cur.id);
-$('#pd-buy').onclick = () => toast('将跳转抖音小黄车下单 · 或联系客服阿平');
-$('#cart-go').onclick = () => toast('已复制商品清单，正在打开客服私信');
+$('#fb-fav').onclick = () => { const id = FBS.cur.id; FBS.favs.has(id) ? FBS.favs.delete(id) : FBS.favs.add(id); fbFoot(); renderFb(); toast(FBS.favs.has(id) ? '已收藏' : '已取消收藏'); };
+$('#fb-like').onclick = () => likeFb(FBS.cur.id);
+
+/* 上传返图：第一天必传，一个月 / 一年可以现在传（有老图），也可以以后补 */
+const FN = { c2: '星月菩提', shape: '圆珠', pics: [false, false, false] };
+const fnCat = () => ({ '橄榄核': 2, '小叶紫檀': 4 })[FN.c2] || 1;
+function renderFbNew() {
+  $('#fn-c2').innerHTML = SHOP_CATS.flatMap(c => c.subs).slice(0, 10).map(n => `<button class="chip" data-fnc2="${n}" aria-selected="${n === FN.c2}">${n}</button>`).join('');
+  $('#fn-shape').innerHTML = SHAPES.map(n => `<button class="chip" data-fnshape="${n}" aria-selected="${n === FN.shape}">${n}</button>`).join('');
+  $('#fn-photos').innerHTML = STAGES.map((s, k) => FN.pics[k]
+    ? `<div class="ph-tile st${k}">${bracelet(fnCat(), 2)}<span class="cover">${s.t}</span><button class="rm" data-fnrm="${k}" aria-label="删除${s.t}的图">×</button></div>`
+    : `<button class="ph-tile ph-add" data-fnadd="${k}"><span class="plus">+</span>${s.t}<small>${k ? '可以以后补' : '必传'}</small></button>`).join('');
+}
+function openFbNew() { $('#fn-err').hidden = true; renderFbNew(); openSub('fbnew'); }
+$('#fbnew').addEventListener('click', e => {
+  const c = e.target.closest('[data-fnc2]'); if (c) { FN.c2 = c.dataset.fnc2; renderFbNew(); }
+  const sh = e.target.closest('[data-fnshape]'); if (sh) { FN.shape = sh.dataset.fnshape; renderFbNew(); }
+  const a = e.target.closest('[data-fnadd]'); if (a) { FN.pics[+a.dataset.fnadd] = true; renderFbNew(); }
+  const rm = e.target.closest('[data-fnrm]'); if (rm) { FN.pics[+rm.dataset.fnrm] = false; renderFbNew(); }
+});
+$('#fn-go').onclick = () => {
+  const name = $('#fn-name').value.trim(), text = $('#fn-text').value.trim(), err = $('#fn-err');
+  const fail = m => { err.textContent = m; err.hidden = false; };
+  if (!FN.pics[0]) return fail('至少传一张「第一天」的图');
+  if (FN.pics[2] && !FN.pics[1]) return fail('传了一年的图，也补一张一个月的，对比才完整');
+  const hit = blocked(name + text); if (hit) return fail(`含违规内容「${hit}」，请修改`);
+  const days = FN.pics[2] ? 365 : FN.pics[1] ? 30 : 0;
+  const c1 = SHOP_CATS.findIndex(c => c.subs.includes(FN.c2));
+  FB.unshift({ id: Date.now(), ...ME, c1, c2: FN.c2, shape: FN.shape, name: `${FN.c2} · ${name || FN.shape}`, spec: '我的返图', cat: fnCat(), n: 2, days, likes: 0, date: Date.now(), text });
+  FN.pics = [false, false, false]; $('#fn-name').value = ''; $('#fn-text').value = '';
+  FBS.c1 = -1; FBS.c2 = ''; FBS.shape = ''; FBS.sort = 'new'; FBS.q = ''; $('#sp-q').value = '';
+  renderFb(); closeSub($('#fbnew'));
+  const got = earn('post');
+  toast(`返图已发布${plus(got)}${days < 365 ? ' · 到时间提醒你补图' : ''}`);
+};
 
 /* 工具箱 · 配饰效果：主串材质 + 配饰 */
 const ACCS = ['马凳三通', '古格塔', '猛犸顶珠', '蜜蜡顶珠', '南红隔珠', '金饰隔珠', '银饰隔片', '背云', '流苏'];
@@ -1924,7 +1999,7 @@ $('#up-go').onclick = () => {
   }, 2600);
 };
 
-renderPick(); restartAuto(); showNotice(); renderContest(); renderCheckin(); renderFeed(); renderColl(); renderKnow(); renderAdvice(); renderAsks(); renderAccessory(); renderHelper(); renderVault(); renderShop(); renderPoints(); go('home');
+renderPick(); restartAuto(); showNotice(); renderContest(); renderCheckin(); renderFeed(); renderColl(); renderKnow(); renderAdvice(); renderAsks(); renderAccessory(); renderHelper(); renderVault(); renderFb(); renderPoints(); go('home');
 </script>
 
 </body>
